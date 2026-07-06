@@ -1,0 +1,361 @@
+@use './abstracts/_variables' as *;
+@use './abstracts/_mixins' as *;
+@use './abstracts/_functions' as *;
+
+.portfolio-card-cont {
+  .card-wrap {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-radius: rem(10px);
+    box-sizing: border-box;
+    gap: rem(30px);
+    overflow: hidden;
+  }
+
+  .card-wrap > li,
+  .card-swiper .swiper-slide {
+    border-right: 1px solid #e9e9e9;
+    color: $gray;
+    padding: rem(20px) rem(30px);
+    box-sizing: border-box;
+    border-radius: rem(10px);
+    background-color: $white;
+    box-shadow: $bx-shadow01;
+    cursor: pointer;
+    transition: all 0.3s;
+    &.no-interact {
+      cursor: default;
+      pointer-events: none;
+
+      &:hover {
+        background: $white !important;
+        box-shadow: $bx-shadow01 !important;
+      }
+    }
+    &:last-child {
+      border: none;
+    }
+    &.active,
+    &:hover {
+      background-color: $color-sub;
+      color: #fff;
+      h5 {
+        color: #fff;
+        small {
+          color: #fff;
+        }
+      }
+      p {
+        color: $white;
+      }
+      ul {
+        li {
+          color: $white;
+        }
+      }
+      .ico {
+        background-color: $white;
+      }
+    }
+    figure {
+      gap: rem(20px);
+      .ico {
+        width: rem(50px);
+        min-width: rem(50px);
+        height: rem(50px);
+        margin-bottom: rem(10px);
+        @include flex-center;
+        background-color: $color-sub02;
+        border-radius: 50%;
+        svg {
+          font-size: rem(25px);
+          color: $color-sub03;
+        }
+      }
+      h5 {
+        font-size: rem(30px);
+        font-weight: 600;
+        line-height: 1;
+        margin-top: rem(5px);
+        display: flex;
+        gap: rem(2px);
+        align-items: end;
+        color: $color-sub;
+        small {
+          font-size: rem(17px);
+          color: $gray;
+          font-weight: 400;
+        }
+      }
+      p {
+        color: $black;
+      }
+      ul {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: rem(5px);
+        li {
+          border-radius: rem(30px);
+          color: $gray;
+          font-size: rem(14px);
+        }
+      }
+    }
+  }
+
+  .card-swiper .swiper-slide {
+    height: auto;
+  }
+  .swiper-pagination {
+    position: unset;
+    margin-top: rem(10px);
+    &-bullet-active {
+      background-color: $color-sub;
+    }
+  }
+}
+
+.portfolio-list-cont {
+  .list {
+    &-item {
+      background-color: $white;
+      border-radius: rem(10px);
+      box-shadow: $bx-shadow01;
+      padding: rem(20px);
+      box-sizing: border-box;
+      margin-bottom: rem(30px);
+      &:last-child {
+        margin-bottom: 0;
+      }
+      figure {
+        display: flex;
+        gap: rem(30px);
+        padding-bottom: rem(20px);
+        margin-bottom: rem(20px);
+        border-bottom: 1px solid #e9e9e9;
+        opacity: 0;
+        animation: fade-up 1s forwards;
+        .img-bx {
+          width: rem(300px);
+          border-radius: rem(5px);
+          overflow: hidden;
+          height: rem(160px);
+          background-color: $black;
+          @include flex-center;
+          font-size: rem(60px);
+          color: $gray;
+          position: relative;
+          svg {
+            position: absolute;
+            top: rem(30px);
+            left: rem(30px);
+            transform: translate(-50%, -50%);
+            font-size: rem(35px);
+            color: #ffffff7e;
+            z-index: 1;
+          }
+          &:hover {
+            img {
+              scale: 1.05;
+            }
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            opacity: 0.5;
+            transition: 0.3s;
+          }
+        }
+        figcaption {
+          width: calc(100% - #{rem(330px)});
+          h5 {
+            font-size: rem(20px);
+            font-weight: 600;
+            margin-top: rem(5px);
+            margin-bottom: rem(5px);
+            display: flex;
+            align-items: center;
+            gap: rem(10px);
+            small {
+              color: $gray;
+              font-size: 80%;
+              font-weight: 400;
+            }
+          }
+          p {
+            color: $gray;
+            margin-bottom: rem(10px);
+            display: flex;
+            gap: rem(5px);
+            word-break: keep-all;
+            svg {
+              font-size: rem(14px);
+              transform: translateY(rem(8px));
+            }
+          }
+          .deps {
+            &.active {
+              h6 {
+                color: $color-sub03;
+                &::after {
+                  width: 100%;
+                }
+              }
+              ol {
+                display: block;
+              }
+            }
+            h6 {
+              width: fit-content;
+              display: flex;
+              align-items: center;
+              gap: rem(3px);
+              cursor: pointer;
+              transition: all 0.3s;
+              position: relative;
+              &::after {
+                content: '';
+                position: absolute;
+                bottom: rem(-2px);
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: $color-sub03;
+                transition: width 0.3s ease;
+              }
+              &:hover {
+                color: $color-sub03;
+                &::after {
+                  width: 100%;
+                }
+              }
+            }
+            ol {
+              font-size: rem(16px);
+              margin-top: rem(10px);
+              display: none;
+
+              li {
+                margin-bottom: rem(5px);
+                padding-bottom: rem(5px);
+                border-bottom: 1px solid #e9e9e9;
+                display: flex;
+                gap: rem(5px);
+                word-break: keep-all;
+                &::before {
+                  content: attr(data-txt);
+                  color: $gray;
+                }
+                svg {
+                  font-size: rem(14px);
+                }
+                &:hover {
+                  a {
+                    color: $color-sub;
+                  }
+                }
+                a {
+                  transition: all 0.2s;
+                }
+              }
+            }
+          }
+          ul {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: rem(10px);
+            margin-bottom: rem(10px);
+            li {
+              color: $gray;
+              span {
+                color: $color-sub03;
+              }
+            }
+          }
+        }
+      }
+      .skill {
+        display: flex;
+        align-items: center;
+        gap: rem(10px);
+        margin-bottom: rem(30px);
+        span {
+          font-size: rem(13px);
+          padding: rem(2px) rem(10px);
+          box-sizing: border-box;
+          border-radius: rem(30px);
+          background-color: $color-sub02;
+          &.html {
+            background-color: $bg-html;
+          }
+          &.css {
+            background-color: $bg-css;
+          }
+          &.js {
+            background-color: $bg-js;
+          }
+          &.vue {
+            background-color: $bg-vue;
+          }
+          &.react {
+            background-color: $bg-react;
+          }
+          &.next {
+            background-color: $bg-next;
+          }
+          &.php {
+            background-color: $bg-php;
+          }
+          &.gsap {
+            background-color: $bg-gsap;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .portfolio-list-cont {
+    .list-item {
+      figure {
+        flex-direction: column;
+        .img-bx {
+          width: 100%;
+          height: rem(400px);
+        }
+        figcaption {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .portfolio-card-cont {
+    .card-wrap > li,
+    .card-swiper .swiper-slide {
+      padding: rem(20px);
+    }
+  }
+  .portfolio-list-cont {
+    .list-item {
+      figure {
+        flex-direction: column;
+        .img-bx {
+          width: 100%;
+          height: rem(200px);
+        }
+        figcaption {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

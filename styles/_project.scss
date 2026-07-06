@@ -1,0 +1,145 @@
+@use './abstracts/_variables' as *;
+@use './abstracts/_mixins' as *;
+@use './abstracts/_functions' as *;
+
+.project-card-cont {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    box-sizing: border-box;
+    gap: rem(30px);
+  }
+
+  ul li,
+  .card-swiper .swiper-slide {
+    background: $white;
+    box-shadow: $bx-shadow01;
+    padding: rem(20px);
+    box-sizing: border-box;
+    border-radius: rem(10px);
+
+    &.item-html {
+      .ico {
+        background-color: $color-html;
+      }
+      .inc {
+        color: $color-html;
+      }
+    }
+    &.item-css {
+      .ico {
+        background-color: $color-css;
+      }
+      .inc {
+        color: $color-css;
+      }
+    }
+    &.item-js {
+      .ico {
+        background-color: $color-js;
+      }
+      .inc {
+        color: $color-js;
+      }
+    }
+    &.item-vue {
+      .ico {
+        background-color: $color-vue;
+      }
+      .inc {
+        color: $color-vue;
+      }
+    }
+    &.item-react {
+      .ico {
+        background-color: $color-react;
+      }
+      .inc {
+        color: $color-react;
+      }
+    }
+
+    a {
+      color: $black;
+    }
+
+    figure {
+      display: flex;
+      align-items: center;
+      gap: rem(15px);
+      margin-bottom: rem(20px);
+      .ico {
+        width: rem(55px);
+        min-width: rem(55px);
+        height: rem(55px);
+        @include flex-center;
+        border-radius: 50%;
+        svg {
+          font-size: rem(25px);
+          color: $white;
+        }
+      }
+      figcaption {
+        h6 {
+          display: flex;
+          align-items: center;
+          gap: rem(5px);
+          line-height: 1;
+          .total {
+            font-weight: 800;
+            font-size: rem(25px);
+            color: $black;
+          }
+          span {
+            color: $color-sub;
+            font-weight: 600;
+          }
+        }
+        p {
+          color: $gray;
+          font-size: rem(14px);
+          margin-top: rem(3px);
+        }
+      }
+    }
+
+    .date {
+      font-size: rem(15px);
+      color: $gray;
+      @include flex-between;
+      flex-wrap: wrap;
+      gap: rem(5px);
+    }
+  }
+
+  .card-swiper .swiper-slide {
+    height: auto;
+  }
+  .swiper-pagination {
+    position: unset;
+    margin-top: rem(10px);
+    &-bullet-active {
+      background-color: $color-sub;
+    }
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .project-card-cont {
+    ul li,
+    .card-swiper .swiper-slide {
+      figure {
+        flex-direction: column;
+        align-items: start;
+        .ico {
+          width: rem(45px);
+          min-width: rem(45px);
+          height: rem(45px);
+        }
+      }
+      .date {
+        gap: 0;
+      }
+    }
+  }
+}

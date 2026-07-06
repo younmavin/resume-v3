@@ -1,0 +1,73 @@
+// styles/_loading.scss
+@use './abstracts/_variables' as *;
+@use './abstracts/_mixins' as *;
+@use './abstracts/_functions' as *;
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background-color: $bg-main;
+  @include flex-center;
+
+  .loading-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(20px);
+
+    .ico {
+      width: rem(60px);
+      height: rem(60px);
+      background-color: $color-main;
+      color: $white;
+      font-weight: 900;
+      font-size: rem(30px);
+      font-family: 'Arial Black', Arial, sans-serif;
+      @include flex-center;
+      border-radius: rem(2px);
+      animation: loading-bounce 1s ease-in-out infinite;
+    }
+
+    .loading-bar {
+      width: rem(160px);
+      height: rem(4px);
+      background-color: $color-sub02;
+      border-radius: rem(4px);
+      overflow: hidden;
+
+      span {
+        display: block;
+        width: 40%;
+        height: 100%;
+        background-color: $color-sub;
+        border-radius: rem(4px);
+        animation: loading-slide 1.2s ease-in-out infinite;
+      }
+    }
+
+    p {
+      font-size: rem(14px);
+      color: $gray;
+    }
+  }
+}
+
+@keyframes loading-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(rem(-8px));
+  }
+}
+
+@keyframes loading-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(#{rem(160px)});
+  }
+}

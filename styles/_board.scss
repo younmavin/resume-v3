@@ -1,0 +1,87 @@
+@use './abstracts/_variables' as *;
+@use './abstracts/_mixins' as *;
+@use './abstracts/_functions' as *;
+
+.qna-cont {
+  .list {
+    li {
+      margin-bottom: rem(20px);
+      cursor: pointer;
+      &.active {
+        .faq {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+        .ans {
+          display: flex;
+          transform: translateY(0);
+        }
+      }
+      .faq {
+        button {
+          width: 100%;
+          border: none;
+          background-color: $color-sub02;
+          @include flex-between;
+          padding: rem(20px);
+          box-sizing: border-box;
+          border-radius: rem(10px);
+          box-shadow: $bx-shadow01;
+          font-size: rem(17px);
+          font-weight: 400;
+          color: $black;
+          text-align: start;
+          gap: rem(10px);
+          font-family: 'Pretendard', sans-serif;
+          line-height: 1.7;
+          cursor: pointer;
+          div {
+            display: flex;
+            align-items: start;
+            gap: rem(5px);
+            span {
+              animation: fade-up 1s forwards;
+              opacity: 0;
+            }
+            &::before {
+              content: 'Q.';
+              color: $color-main;
+              font-weight: 500;
+              height: fit-content;
+              line-height: 1;
+              transform: translateY(rem(5px));
+            }
+          }
+          svg {
+            width: rem(15px);
+            transition: all 0.2s;
+          }
+        }
+      }
+      .ans {
+        padding: rem(30px) rem(20px);
+        box-sizing: border-box;
+        background-color: $white;
+        border-radius: rem(10px);
+        margin-top: rem(10px);
+        text-wrap: balance;
+        word-break: keep-all;
+        display: flex;
+        gap: rem(5px);
+        display: none;
+        transition: 0.3s;
+        transform: translateY(rem(-20px));
+        height: fit-content;
+        pointer-events: none;
+        margin-bottom: rem(40px);
+        box-shadow: $bx-shadow01;
+        &::before {
+          content: 'A.';
+          color: $color-main;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

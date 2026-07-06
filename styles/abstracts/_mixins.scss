@@ -1,0 +1,140 @@
+@use './variables' as *;
+@use './functions' as *;
+
+// =========================================================
+// Flex 정렬
+// =========================================================
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flex-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+@mixin position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin transition-hover {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+// =========================================================
+// window 폼 스타일 공통 패턴
+// =========================================================
+
+// 떠 있는 창(패널)의 입체 테두리 + 배경
+@mixin win98-panel {
+  background-color: $win-bg;
+  border-top: 2px solid $win-border-light;
+  border-left: 2px solid $win-border-light;
+  border-right: 2px solid $win-border-dark;
+  border-bottom: 2px solid $win-border-dark;
+  box-shadow: 1px 1px 0px $win-shadow-outer;
+}
+
+// 버튼 입체 효과 - 기본/ hover
+@mixin win98-bevel-raised {
+  box-shadow:
+    inset -2px -2px 2px 1px $shadow-color-dark,
+    inset 2px 2px 2px 1px $shadow-color-light;
+}
+@mixin win98-bevel-pressed {
+  box-shadow:
+    inset -2px -2px 2px 1px $shadow-color-light,
+    inset 2px 2px 2px 1px $shadow-color-dark;
+}
+// 기본 돌출 + hover시 눌림 효과까지 한번에 적용
+@mixin win98-button {
+  @include win98-bevel-raised;
+  &:hover {
+    @include win98-bevel-pressed;
+  }
+}
+
+// 창 타이틀바 그라데이션
+@mixin win98-titlebar($direction: to right) {
+  background: linear-gradient(#{$direction}, $win-titlebar-start, $win-titlebar-end);
+}
+
+// 정사각형 아이콘 버튼
+@mixin win98-icon-btn($bg-color: $win-btn-bg, $size: rem(30px)) {
+  @include win98-button;
+  border: none;
+  width: $size;
+  height: $size;
+  background-color: $bg-color;
+}
+
+// 모달/연락처 상단 타이틀 영역 전체
+@mixin win98-window-header {
+  @include flex-between;
+  padding: rem(10px) rem(20px);
+  box-sizing: border-box;
+  @include win98-titlebar();
+  margin-bottom: rem(5px);
+
+  button {
+    @include win98-icon-btn();
+    font-family: 'DnfBitbeatV2';
+    font-size: rem(18px);
+  }
+
+  h3 {
+    color: #fff;
+    font-weight: 700;
+    font-size: rem(20px);
+    display: flex;
+    align-items: center;
+    gap: rem(10px);
+    img {
+      width: rem(30px);
+    }
+  }
+}
+
+// 얇은 테두리
+@mixin win98-sunken-border {
+  border-top: 1px solid $win-border-dark;
+  border-left: 1px solid $win-border-dark;
+  border-right: 1px solid $win-border-light;
+  border-bottom: 1px solid $win-border-light;
+}
+@mixin win98-raised-border-thin {
+  border-top: 1px solid $win-border-light;
+  border-left: 1px solid $win-border-light;
+  border-right: 1px solid $win-border-dark;
+  border-bottom: 1px solid $win-border-dark;
+}
+
+// 커스텀 스크롤바 핸들/버튼 입체 효과
+@mixin win98-scrollbar-bevel($bg-color: #c0c0c0) {
+  background-color: $bg-color;
+  border-top: 2px solid $win-border-light;
+  border-left: 2px solid $win-border-light;
+  border-right: 2px solid $win-border-dark;
+  border-bottom: 2px solid $win-border-dark;
+  box-shadow: inset 1px 1px 0px #dfdfdf;
+}
+
+// 텍스트 옆 세로 구분선
+@mixin divider-line($color: $gray-color, $height: rem(15px)) {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: $height;
+  background-color: $color;
+}
