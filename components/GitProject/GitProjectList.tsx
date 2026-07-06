@@ -7,7 +7,7 @@ const langClass: Record<string, string> = {
   HTML: 'html',
   CSS: 'css',
   JavaScript: 'js',
-  TypeScript: 'js',
+  TypeScript: 'ts',
   Vue: 'vue',
   React: 'react',
 }

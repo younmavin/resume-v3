@@ -14,7 +14,7 @@ const langConfig: Record<string, { icon: any; className: string }> = {
   CSS: { icon: ['fab', 'css3'], className: 'css' },
   JavaScript: { icon: ['fab', 'js'], className: 'js' },
   Vue: { icon: ['fab', 'vuejs'], className: 'vue' },
-  React: { icon: ['fab', 'react'], className: 'react' },
+  TypeScript: { icon: ['fab', 'typescript'], className: 'ts' },
 }
 
 type Props = {

@@ -58,7 +58,14 @@
         color: $color-react;
       }
     }
-
+    &.item-ts {
+      .ico {
+        background-color: $color-ts;
+      }
+      .inc {
+        color: $color-ts;
+      }
+    }
     a {
       color: $black;
     }

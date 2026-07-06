@@ -9,7 +9,7 @@ const GitProjectCard = async () => {
   const oneMonthAgo = new Date()
   oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
 
-  const langs = ['HTML', 'CSS', 'JavaScript', 'Vue', 'React']
+  const langs = ['HTML', 'CSS', 'JavaScript', 'Vue', 'TypeScript']
   const langCount: Record<string, { total: number; recentCount: number; date: string }> = {}
   langs.forEach((lang) => {
     langCount[lang] = { total: 0, recentCount: 0, date: '' }

@@ -1901,6 +1901,14 @@ a {
 .project-card-cont .card-swiper .swiper-slide.item-react .inc {
   color: #82c3ca;
 }
+.project-card-cont ul li.item-ts .ico,
+.project-card-cont .card-swiper .swiper-slide.item-ts .ico {
+  background-color: #6a92c4;
+}
+.project-card-cont ul li.item-ts .inc,
+.project-card-cont .card-swiper .swiper-slide.item-ts .inc {
+  color: #6a92c4;
+}
 .project-card-cont ul li a,
 .project-card-cont .card-swiper .swiper-slide a {
   color: #363636;
@@ -3253,6 +3261,9 @@ aside {
 }
 .table-list table tbody tr td.skill span.js {
   background-color: #f0e5cb;
+}
+.table-list table tbody tr td.skill span.ts {
+  background-color: #ccdff7;
 }
 .table-list table tbody tr td.skill span.vue {
   background-color: #b2eedd;
