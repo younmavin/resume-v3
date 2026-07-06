@@ -286,8 +286,20 @@ aside {
       border-radius: rem(5px);
       cursor: pointer;
       line-height: 1;
+      transition: all 0.2s;
       svg {
         width: rem(12px);
+      }
+      &:hover {
+        background-color: $color-sub;
+        color: $white;
+      }
+      &:disabled {
+        opacity: 0.5;
+        &:hover {
+          background-color: $color-sub02;
+          color: $black;
+        }
       }
     }
   }

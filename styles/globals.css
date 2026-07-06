@@ -3157,9 +3157,21 @@ aside {
   border-radius: 0.5rem;
   cursor: pointer;
   line-height: 1;
+  transition: all 0.2s;
 }
 .paging .btn-wrap button svg {
   width: 1.2rem;
+}
+.paging .btn-wrap button:hover {
+  background-color: #748df0;
+  color: #fafafa;
+}
+.paging .btn-wrap button:disabled {
+  opacity: 0.5;
+}
+.paging .btn-wrap button:disabled:hover {
+  background-color: #dde1ec;
+  color: #363636;
 }
 
 .table-list {
