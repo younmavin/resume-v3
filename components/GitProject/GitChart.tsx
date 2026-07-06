@@ -9,7 +9,7 @@ const COLORS: Record<string, string> = {
   HTML: '#d46a53',
   CSS: '#496fd4',
   JavaScript: '#dfc570',
-  TypeScript: '#f1dfa2',
+  TypeScript: '#6a92c4',
   Vue: '#68b876',
   React: '#82c3ca',
   기타: '#C0BDD8',
