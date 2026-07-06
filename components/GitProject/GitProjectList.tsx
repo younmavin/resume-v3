@@ -17,6 +17,10 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
   const totalPage = Math.ceil(repos.length / perPage)
   const current = repos.slice((page - 1) * perPage, page * perPage)
 
+  const openRepo = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <div className="project-list-cont cont">
       <div className="table-list">
@@ -31,18 +35,29 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
           </thead>
           <tbody>
             {current.map((repo: any) => (
-              <tr key={repo.id}>
+              <tr
+                key={repo.id}
+                className="row-link"
+                role="link"
+                tabIndex={0}
+                aria-label={`${repo.name} GitHub 저장소 새 탭에서 열기`}
+                onClick={() => openRepo(repo.html_url)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    openRepo(repo.html_url)
+                  }
+                }}
+              >
                 <td className="deps item">
-                  <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="row-link" aria-label={`${repo.name} GitHub 저장소 새 탭에서 열기`}>
-                    <figure>
-                      <div className="ico">
-                        <FontAwesomeIcon icon={['fab', 'github']} />
-                      </div>
-                      <figcaption>
-                        {repo.name} <small>{repo.description ?? '설명 없음'}</small>
-                      </figcaption>
-                    </figure>
-                  </a>
+                  <figure>
+                    <div className="ico">
+                      <FontAwesomeIcon icon={['fab', 'github']} />
+                    </div>
+                    <figcaption>
+                      {repo.name} <small>{repo.description ?? '설명 없음'}</small>
+                    </figcaption>
+                  </figure>
                 </td>
                 <td className="update item">{repo.pushed_at?.slice(0, 10).replace(/-/g, '.')}</td>
                 <td className="skill item">{repo.language && <span className={langClass[repo.language] ?? ''}>{repo.language}</span>}</td>

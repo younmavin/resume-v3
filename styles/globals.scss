@@ -326,23 +326,13 @@ aside {
         }
       }
     }
-    tbody tr {
-      position: relative; // ::after의 기준점
-      .row-link {
-        // 기존 스타일 유지하고 추가:
-        &::after {
-          content: '';
-          position: absolute;
-          inset: 0; // tr 전체를 덮음
-          z-index: 1;
-        }
-      }
-    }
+
     tbody {
       tr {
         border-bottom: 1px solid #e9e9e9;
         background-color: $white;
         transition: all 0.2s;
+        cursor: pointer;
         &:hover {
           background-color: #e9eaee;
           td {

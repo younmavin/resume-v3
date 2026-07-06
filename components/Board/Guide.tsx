@@ -26,6 +26,10 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
     setPage(1)
   }
 
+  const openGuide = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <div className="cont">
       <div className="tit-wrap">
@@ -59,18 +63,29 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
           <tbody>
             {current.length > 0 ? (
               current.map((item) => (
-                <tr key={item.id}>
+                <tr
+                  key={item.id}
+                  className="row-link"
+                  role="link"
+                  tabIndex={0}
+                  aria-label={`${item.title} 자료 새 탭에서 열기`}
+                  onClick={() => openGuide(item.url)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      openGuide(item.url)
+                    }
+                  }}
+                >
                   <td className="deps item">
-                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="row-link" aria-label={`${item.title} 자료 새 탭에서 열기`}>
-                      <figure>
-                        <div className="ico">
-                          <FontAwesomeIcon icon={['fab', 'notion']} />
-                        </div>
-                        <figcaption>
-                          {item.title} <small>{item.sub}</small>
-                        </figcaption>
-                      </figure>
-                    </a>
+                    <figure>
+                      <div className="ico">
+                        <FontAwesomeIcon icon={['fab', 'notion']} />
+                      </div>
+                      <figcaption>
+                        {item.title} <small>{item.sub}</small>
+                      </figcaption>
+                    </figure>
                   </td>
                   <td className="update item">{item.date}</td>
                   <td className="ico">
