@@ -81,14 +81,14 @@ const QnaItem = ({ item, id }: QnaItemProps) => {
 
   return (
     <li className={isOpen ? 'active' : ''}>
-      <h5 className="faq">
+      <p className="faq">
         <button type="button" onClick={() => setIsOpen((prev) => !prev)} aria-expanded={isOpen} aria-controls={`${id}-ans`}>
           <span>
             <span>{item.faq}</span>
           </span>
           <FontAwesomeIcon icon={['fas', 'chevron-down']} />
         </button>
-      </h5>
+      </p>
       <p className="ans" id={`${id}-ans`} ref={ref}>
         {item.ans}
       </p>
@@ -148,9 +148,9 @@ const QnaList = ({ perPage = 10 }: { perPage?: number }) => {
         <p style={{ textAlign: 'center', padding: '20px' }}>검색 결과가 없습니다.</p>
       )}
       <div className="paging">
-        <h6>
+        <p>
           페이지 <span className="current">{page}</span> / <span className="total">{totalPage || 1}</span>
-        </h6>
+        </p>
         <div className="btn-wrap">
           <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>
             <FontAwesomeIcon icon={['fas', 'arrow-left']} /> 이전

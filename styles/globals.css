@@ -1539,10 +1539,10 @@ a {
 .sidebar ul .menu-item {
   margin-bottom: 4rem;
 }
-.sidebar ul .menu-item:hover h6, .sidebar ul .menu-item.active h6 {
+.sidebar ul .menu-item:hover strong, .sidebar ul .menu-item.active strong {
   color: #4265f5;
 }
-.sidebar ul .menu-item h6 {
+.sidebar ul .menu-item strong {
   font-size: 1.7rem;
   margin-bottom: 2rem;
   display: flex;
@@ -1555,18 +1555,18 @@ a {
   color: #363636;
   transition: all 0.2s;
 }
-.sidebar ul .menu-item h6 svg {
+.sidebar ul .menu-item strong svg {
   width: 1.7rem;
 }
-.sidebar ul .menu-item h6 svg.small {
+.sidebar ul .menu-item strong svg.small {
   width: 1.3rem;
 }
-.sidebar ul .menu-item h6 span {
+.sidebar ul .menu-item strong span {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.sidebar ul .menu-item h6 .total {
+.sidebar ul .menu-item strong .total {
   background-color: #748df0;
   color: #fff;
   font-weight: 300;
@@ -1746,7 +1746,7 @@ a {
   font-size: 1.5rem;
   color: #757575;
 }
-.career-cont .list h5 {
+.career-cont .list h2 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
   color: #748df0;
@@ -1755,7 +1755,7 @@ a {
   gap: 0.5rem;
   align-items: center;
 }
-.career-cont .list h5 svg {
+.career-cont .list h2 svg {
   width: 1.5rem;
 }
 .career-cont .list ul {

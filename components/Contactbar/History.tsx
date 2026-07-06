@@ -45,12 +45,12 @@ const Career = () => {
       </figure>
       {sections.map((section) => (
         <div key={section.title} className="list">
-          <h5>{section.title}</h5>
+          <h2>{section.title}</h2>
           <ul>
             {section.items.map((item, i) => (
               <li key={i}>
                 <div>
-                  <h6>{item.title}</h6>
+                  <strong>{item.title}</strong>
                   <p>
                     <span>{item.date}</span>
                   </p>

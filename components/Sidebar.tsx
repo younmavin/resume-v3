@@ -117,13 +117,13 @@ const Sidebar = ({ portfolioTotal, portfolioCounts, gitTotal, gitCounts, open = 
               return (
                 <li key={menu.title} className={`menu-item ${isActive ? 'active' : ''}`}>
                   <Link href={menu.href}>
-                    <h6>
+                    <strong>
                       <span>
                         <FontAwesomeIcon icon={menu.icon} />
                         {menu.title}
                       </span>
                       {menu.total !== undefined && <span className="total">{menu.total}</span>}
-                    </h6>
+                    </strong>
                   </Link>
                   {menu.sub.length > 0 && (
                     <ul>

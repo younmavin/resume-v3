@@ -55,9 +55,9 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
         </table>
       </div>
       <div className="paging">
-        <h6>
+        <p>
           페이지 <span className="current">{page}</span> / <span className="total">{totalPage || 1}</span>
-        </h6>
+        </p>
         <div className="btn-wrap">
           <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>
             <FontAwesomeIcon icon={['fas', 'arrow-left']} /> 이전

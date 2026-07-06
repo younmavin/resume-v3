@@ -56,11 +56,11 @@
       margin-bottom: rem(40px);
       &:hover,
       &.active {
-        h6 {
+        strong {
           color: $color-main;
         }
       }
-      h6 {
+      strong {
         font-size: rem(17px);
         margin-bottom: rem(20px);
         display: flex;
