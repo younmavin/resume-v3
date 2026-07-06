@@ -2890,7 +2890,8 @@ body {
   width: 100%;
 }
 
-a {
+a,
+button {
   color: #363636;
 }
 

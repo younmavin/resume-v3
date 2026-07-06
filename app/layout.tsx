@@ -4,9 +4,30 @@ import LenisProvider from '@/components/LenisProvider'
 import { portfolioData } from '@/data/portfolioData'
 import LayoutShell from '@/components/LayoutShell'
 
+// app/layout.tsx
 export const metadata: Metadata = {
-  title: '포트폴리오',
-  description: '웹퍼블리셔 포트폴리오',
+  metadataBase: new URL('https://resume-v3-nine.vercel.app'),
+  title: {
+    default: '윤관호 | 프론트엔드 & 웹퍼블리셔',
+    template: '%s | 윤관호 포트폴리오',
+  },
+  description: '프론트엔드 & 웹퍼블리셔 윤관호의 포트폴리오.',
+  keywords: ['프론트엔드', '웹퍼블리셔', '포트폴리오', 'Next.js', 'React', '윤관호'],
+  openGraph: {
+    title: '윤관호 | 프론트엔드 & 웹퍼블리셔',
+    description: '프론트엔드 & 웹퍼블리셔 포트폴리오',
+    url: 'https://resume-v3-nine.vercel.app',
+    siteName: '윤관호 포트폴리오',
+    images: [
+      {
+        url: 'https://d3az2v3o9tyrsq.cloudfront.net/og.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'ko_KR',
+    type: 'website',
+  },
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

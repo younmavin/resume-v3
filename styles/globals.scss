@@ -32,7 +32,9 @@ body {
   gap: rem(50px);
   width: 100%;
 }
-a {
+
+a,
+button {
   color: $black;
 }
 
