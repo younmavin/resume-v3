@@ -2028,16 +2028,16 @@ a {
   line-height: 1.7;
   cursor: pointer;
 }
-.qna-cont .list li .faq button div {
+.qna-cont .list li .faq button > span {
   display: flex;
   align-items: start;
   gap: 0.5rem;
 }
-.qna-cont .list li .faq button div span {
+.qna-cont .list li .faq button > span span {
   animation: fade-up 1s forwards;
   opacity: 0;
 }
-.qna-cont .list li .faq button div::before {
+.qna-cont .list li .faq button > span::before {
   content: "Q.";
   color: #4265f5;
   font-weight: 500;

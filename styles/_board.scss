@@ -36,7 +36,7 @@
           font-family: 'Pretendard', sans-serif;
           line-height: 1.7;
           cursor: pointer;
-          div {
+          > span {
             display: flex;
             align-items: start;
             gap: rem(5px);

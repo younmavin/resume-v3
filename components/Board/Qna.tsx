@@ -83,9 +83,9 @@ const QnaItem = ({ item, id }: QnaItemProps) => {
     <li className={isOpen ? 'active' : ''}>
       <h5 className="faq">
         <button type="button" onClick={() => setIsOpen((prev) => !prev)} aria-expanded={isOpen} aria-controls={`${id}-ans`}>
-          <div>
+          <span>
             <span>{item.faq}</span>
-          </div>
+          </span>
           <FontAwesomeIcon icon={['fas', 'chevron-down']} />
         </button>
       </h5>
