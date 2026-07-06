@@ -3195,6 +3195,15 @@ aside {
   white-space: nowrap;
 }
 .table-list table tbody tr {
+  position: relative;
+}
+.table-list table tbody tr .row-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.table-list table tbody tr {
   border-bottom: 1px solid #e9e9e9;
   background-color: #fafafa;
   transition: all 0.2s;
@@ -3214,9 +3223,7 @@ aside {
 .table-list table tbody tr td {
   padding: 1.5rem;
   box-sizing: border-box;
-}
-.table-list table tbody tr td.deps {
-  display: flex;
+  vertical-align: middle;
 }
 .table-list table tbody tr td.deps figure {
   display: flex;
@@ -3258,15 +3265,12 @@ aside {
   display: inline-block !important;
 }
 .table-list table tbody tr td.skill {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
   animation: fade-up 1s forwards;
   opacity: 0;
 }
 .table-list table tbody tr td.skill span {
   font-size: 1.3rem;
-  padding: 0.2rem 1rem;
+  padding: 0.5rem 1.5rem;
   box-sizing: border-box;
   border-radius: 3rem;
   background-color: #dde1ec;

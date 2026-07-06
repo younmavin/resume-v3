@@ -312,6 +312,7 @@ aside {
   overflow-x: auto;
   table {
     width: 100%;
+
     thead {
       background-color: $color-sub02;
       border-radius: rem(10px) rem(10px) 0 0;
@@ -322,6 +323,18 @@ aside {
           box-sizing: border-box;
           text-align: start;
           white-space: nowrap;
+        }
+      }
+    }
+    tbody tr {
+      position: relative; // ::after의 기준점
+      .row-link {
+        // 기존 스타일 유지하고 추가:
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 0; // tr 전체를 덮음
+          z-index: 1;
         }
       }
     }
@@ -353,8 +366,8 @@ aside {
         td {
           padding: rem(15px);
           box-sizing: border-box;
+          vertical-align: middle;
           &.deps {
-            display: flex;
             figure {
               display: flex;
               align-items: center;
@@ -394,14 +407,11 @@ aside {
             }
           }
           &.skill {
-            display: flex;
-            align-items: center;
-            gap: rem(10px);
             animation: fade-up 1s forwards;
             opacity: 0;
             span {
               font-size: rem(13px);
-              padding: rem(2px) rem(10px);
+              padding: rem(5px) rem(15px);
               box-sizing: border-box;
               border-radius: rem(30px);
               background-color: $color-sub02;
