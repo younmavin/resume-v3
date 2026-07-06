@@ -66,7 +66,7 @@ const ContHead = () => {
   return (
     <div className="cont">
       <div className="tit-wrap">
-        <h5>{title}</h5>
+        <h2>{title}</h2>
         <div className="btn-wrap">
           <Link className="btn-link mt-0" href="/resume/intro">
             나의 소개 <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']} />
@@ -82,7 +82,7 @@ const ContHead = () => {
             <img src="https://d3az2v3o9tyrsq.cloudfront.net/avatar.png" alt="유저 프로필 사진" />
           </div>
           <figcaption>
-            <h3>윤관호</h3>
+            <h1>윤관호</h1>
             <ul>
               {infoData.map((item, i) => (
                 <li key={i}>

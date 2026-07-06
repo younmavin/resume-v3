@@ -1665,7 +1665,7 @@ a {
   display: flex;
   gap: 2rem;
 }
-.info-cont figure h3 {
+.info-cont figure h1 {
   font-size: 2rem;
   font-weight: 600;
   margin-top: 1rem;
@@ -1738,7 +1738,7 @@ a {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.career-cont figure figcaption h6 {
+.career-cont figure figcaption h1 {
   margin-top: 0;
   font-weight: 600;
 }
@@ -1935,21 +1935,21 @@ a {
   font-size: 2.5rem;
   color: #fafafa;
 }
-.project-card-cont ul li figure figcaption h6,
-.project-card-cont .card-swiper .swiper-slide figure figcaption h6 {
+.project-card-cont ul li figure figcaption h3,
+.project-card-cont .card-swiper .swiper-slide figure figcaption h3 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   line-height: 1;
 }
-.project-card-cont ul li figure figcaption h6 .total,
-.project-card-cont .card-swiper .swiper-slide figure figcaption h6 .total {
+.project-card-cont ul li figure figcaption h3 .total,
+.project-card-cont .card-swiper .swiper-slide figure figcaption h3 .total {
   font-weight: 800;
   font-size: 2.5rem;
   color: #363636;
 }
-.project-card-cont ul li figure figcaption h6 span,
-.project-card-cont .card-swiper .swiper-slide figure figcaption h6 span {
+.project-card-cont ul li figure figcaption h3 span,
+.project-card-cont .card-swiper .swiper-slide figure figcaption h3 span {
   color: #748df0;
   font-weight: 600;
 }
@@ -2106,7 +2106,7 @@ a {
      object-fit: cover;
   transform: translateY(1.5rem);
 }
-.personality figure h3 {
+.personality figure h1 {
   margin-top: 1rem;
   font-size: 2rem;
   font-weight: 600;
@@ -2501,14 +2501,14 @@ a {
   background-color: #748df0;
   color: #fff;
 }
-.portfolio-card-cont .card-wrap > li.active h5, .portfolio-card-cont .card-wrap > li:hover h5,
-.portfolio-card-cont .card-swiper .swiper-slide.active h5,
-.portfolio-card-cont .card-swiper .swiper-slide:hover h5 {
+.portfolio-card-cont .card-wrap > li.active h3, .portfolio-card-cont .card-wrap > li:hover h3,
+.portfolio-card-cont .card-swiper .swiper-slide.active h3,
+.portfolio-card-cont .card-swiper .swiper-slide:hover h3 {
   color: #fff;
 }
-.portfolio-card-cont .card-wrap > li.active h5 small, .portfolio-card-cont .card-wrap > li:hover h5 small,
-.portfolio-card-cont .card-swiper .swiper-slide.active h5 small,
-.portfolio-card-cont .card-swiper .swiper-slide:hover h5 small {
+.portfolio-card-cont .card-wrap > li.active h3 small, .portfolio-card-cont .card-wrap > li:hover h3 small,
+.portfolio-card-cont .card-swiper .swiper-slide.active h3 small,
+.portfolio-card-cont .card-swiper .swiper-slide:hover h3 small {
   color: #fff;
 }
 .portfolio-card-cont .card-wrap > li.active p, .portfolio-card-cont .card-wrap > li:hover p,
@@ -2547,8 +2547,8 @@ a {
   font-size: 2.5rem;
   color: #5a7bf0;
 }
-.portfolio-card-cont .card-wrap > li figure h5,
-.portfolio-card-cont .card-swiper .swiper-slide figure h5 {
+.portfolio-card-cont .card-wrap > li figure h3,
+.portfolio-card-cont .card-swiper .swiper-slide figure h3 {
   font-size: 3rem;
   font-weight: 600;
   line-height: 1;
@@ -2558,8 +2558,8 @@ a {
   align-items: end;
   color: #748df0;
 }
-.portfolio-card-cont .card-wrap > li figure h5 small,
-.portfolio-card-cont .card-swiper .swiper-slide figure h5 small {
+.portfolio-card-cont .card-wrap > li figure h3 small,
+.portfolio-card-cont .card-swiper .swiper-slide figure h3 small {
   font-size: 1.7rem;
   color: #757575;
   font-weight: 400;
@@ -2650,8 +2650,8 @@ a {
 .portfolio-list-cont .list-item figure figcaption {
   width: calc(100% - 33rem);
 }
-.portfolio-list-cont .list-item figure figcaption h5 {
-  font-size: 2rem;
+.portfolio-list-cont .list-item figure figcaption h4 {
+  font-size: 1.8rem;
   font-weight: 600;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -2659,7 +2659,7 @@ a {
   align-items: center;
   gap: 1rem;
 }
-.portfolio-list-cont .list-item figure figcaption h5 small {
+.portfolio-list-cont .list-item figure figcaption h4 small {
   color: #757575;
   font-size: 80%;
   font-weight: 400;
@@ -2684,7 +2684,7 @@ a {
 .portfolio-list-cont .list-item figure figcaption .deps.active ol {
   display: block;
 }
-.portfolio-list-cont .list-item figure figcaption .deps h6 {
+.portfolio-list-cont .list-item figure figcaption .deps button {
   width: -moz-fit-content;
   width: fit-content;
   display: flex;
@@ -2693,8 +2693,13 @@ a {
   cursor: pointer;
   transition: all 0.3s;
   position: relative;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  padding: 0;
+  padding-bottom: 5px;
 }
-.portfolio-list-cont .list-item figure figcaption .deps h6::after {
+.portfolio-list-cont .list-item figure figcaption .deps button::after {
   content: "";
   position: absolute;
   bottom: -0.2rem;
@@ -2704,10 +2709,10 @@ a {
   background: #5a7bf0;
   transition: width 0.3s ease;
 }
-.portfolio-list-cont .list-item figure figcaption .deps h6:hover {
+.portfolio-list-cont .list-item figure figcaption .deps button:hover {
   color: #5a7bf0;
 }
-.portfolio-list-cont .list-item figure figcaption .deps h6:hover::after {
+.portfolio-list-cont .list-item figure figcaption .deps button:hover::after {
   width: 100%;
 }
 .portfolio-list-cont .list-item figure figcaption .deps ol {
@@ -2901,6 +2906,7 @@ body {
 a,
 button {
   color: #363636;
+  font-family: "Pretendard", sans-serif;
 }
 
 main {
@@ -2998,7 +3004,7 @@ aside {
   justify-content: space-between;
   margin-bottom: 3rem;
 }
-.cont .tit-wrap h5 {
+.cont .tit-wrap h2 {
   font-weight: 600;
   font-size: 1.8rem;
   display: flex;
@@ -3006,19 +3012,19 @@ aside {
   gap: 0.5rem;
   line-height: 1;
 }
-.cont .tit-wrap h5 .total {
+.cont .tit-wrap h2 .total {
   color: #4265f5;
   font-weight: 600;
 }
-.cont .tit-wrap h5 svg {
+.cont .tit-wrap h2 svg {
   width: 0.8rem;
   margin: 0 0.5rem;
 }
-.cont .tit-wrap h5 small {
+.cont .tit-wrap h2 small {
   font-size: 90%;
   line-height: 1.7;
 }
-.cont .tit-wrap h5 b {
+.cont .tit-wrap h2 b {
   color: #4265f5;
   font-weight: 600;
 }

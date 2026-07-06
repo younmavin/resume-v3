@@ -72,9 +72,9 @@ const PortfolioCard = ({ tabs, counts, activeTab, onTabChange, interactive = tru
             ))}
             <li>외 {rest}개</li>
           </ul>
-          <h5>
+          <h3>
             <CountUp target={counts[tab]} /> <small>개</small>
-          </h5>
+          </h3>
         </figcaption>
       </figure>
     )
@@ -97,9 +97,9 @@ const PortfolioCard = ({ tabs, counts, activeTab, onTabChange, interactive = tru
   return (
     <div className="portfolio-card-cont cont">
       <div className="tit-wrap">
-        <h5>
+        <h2>
           포트폴리오 <span className="total">{counts['웹 전체']}</span>
-        </h5>
+        </h2>
       </div>
       {isMobile ? (
         <Swiper

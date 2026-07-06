@@ -16,7 +16,7 @@ const Info = () => {
           <img src="/images/avatar.png" alt="프로필 이미지" loading="lazy" />
         </div>
         <figcaption>
-          <h3>윤관호</h3>
+          <h1>윤관호</h1>
           <p>프론트엔드 & 웹퍼블리셔</p>
           <ul>
             {contactData.map((item, i) => (

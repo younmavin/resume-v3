@@ -39,7 +39,7 @@ const Career = () => {
           <img src="https://d3az2v3o9tyrsq.cloudfront.net/avatar.png" alt="유저 프로필 사진" />
         </div>
         <figcaption>
-          <h6>윤관호</h6>
+          <h1>윤관호</h1>
           <p>프론트엔드 & 웹퍼블리셔</p>
         </figcaption>
       </figure>

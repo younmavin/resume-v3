@@ -42,9 +42,9 @@ const GitChart = ({ repos = [] }: { repos: any[] }) => {
   return (
     <div className="git-chart cont">
       <div className="tit-wrap">
-        <h5>
+        <h2>
           깃 프로젝트 <span className="total">{repos.length}</span>
-        </h5>
+        </h2>
         <Link href="/gitproject" className="btn-link mt-0">
           전체보기 <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']} />
         </Link>

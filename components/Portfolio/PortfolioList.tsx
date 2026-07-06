@@ -21,9 +21,9 @@ const PortfolioListItem = ({ item }: { item: PortfolioItem }) => {
           </Link>
         </div>
         <figcaption>
-          <h5>
+          <h4>
             {item.title} <small>{item.type}</small>
-          </h5>
+          </h4>
           {item.desc && (
             <p>
               <FontAwesomeIcon icon={['fas', 'pen']} />
@@ -39,10 +39,10 @@ const PortfolioListItem = ({ item }: { item: PortfolioItem }) => {
           </ul>
           {item.deps.length > 0 && (
             <div className={`deps ${isOpen ? 'active' : ''}`}>
-              <h6 onClick={() => setIsOpen((prev) => !prev)}>
+              <button onClick={() => setIsOpen((prev) => !prev)}>
                 상세설명 보기
                 <FontAwesomeIcon icon={['fas', 'magnifying-glass']} />
-              </h6>
+              </button>
               <ol>
                 {item.deps.map((dep, j) => (
                   <li key={j} data-txt={`${j + 1})`}>

@@ -52,9 +52,9 @@ const PortfolioChart = () => {
   return (
     <div className="portfolio-chart cont">
       <div className="tit-wrap">
-        <h5>
+        <h2>
           포트폴리오 <span className="total">{portfolioData.length}</span>
-        </h5>
+        </h2>
         <Link href="/portfolio" className="btn-link mt-0">
           전체보기 <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']} />
         </Link>

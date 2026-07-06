@@ -36,6 +36,7 @@ body {
 a,
 button {
   color: $black;
+  font-family: 'Pretendard', sans-serif;
 }
 
 main {
@@ -138,7 +139,7 @@ aside {
   .tit-wrap {
     @include flex-between;
     margin-bottom: rem(30px);
-    h5 {
+    h2 {
       font-weight: 600;
       font-size: rem(18px);
       display: flex;

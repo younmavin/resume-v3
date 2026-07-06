@@ -29,12 +29,12 @@ const CardItem = ({ lang, data }: { lang: string; data: Props['langCount'][strin
         <FontAwesomeIcon icon={langConfig[lang].icon} />
       </div>
       <figcaption>
-        <h6>
+        <h3>
           <span className="total">
             <CountUp target={data.total} />
           </span>
           {data.recentCount > 0 && <span className="inc">+{data.recentCount}개</span>}
-        </h6>
+        </h3>
         <p>{lang.toUpperCase()}</p>
       </figcaption>
     </figure>
@@ -60,9 +60,9 @@ const GitProjectCardList = ({ total, langCount }: Props) => {
   return (
     <div className="project-card-cont cont">
       <div className="tit-wrap">
-        <h5>
+        <h2>
           깃 프로젝트 <span className="total">{total}</span>
-        </h5>
+        </h2>
       </div>
       {isMobile ? (
         <Swiper

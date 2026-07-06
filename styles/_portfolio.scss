@@ -40,7 +40,7 @@
     &:hover {
       background-color: $color-sub;
       color: #fff;
-      h5 {
+      h3 {
         color: #fff;
         small {
           color: #fff;
@@ -73,7 +73,7 @@
           color: $color-sub03;
         }
       }
-      h5 {
+      h3 {
         font-size: rem(30px);
         font-weight: 600;
         line-height: 1;
@@ -172,8 +172,8 @@
         }
         figcaption {
           width: calc(100% - #{rem(330px)});
-          h5 {
-            font-size: rem(20px);
+          h4 {
+            font-size: rem(18px);
             font-weight: 600;
             margin-top: rem(5px);
             margin-bottom: rem(5px);
@@ -209,7 +209,7 @@
                 display: block;
               }
             }
-            h6 {
+            button {
               width: fit-content;
               display: flex;
               align-items: center;
@@ -217,6 +217,11 @@
               cursor: pointer;
               transition: all 0.3s;
               position: relative;
+              background: none;
+              border: none;
+              font-size: rem(16px);
+              padding: 0;
+              padding-bottom: 5px;
               &::after {
                 content: '';
                 position: absolute;

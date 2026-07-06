@@ -120,9 +120,9 @@ const QnaList = ({ perPage = 10 }: { perPage?: number }) => {
   return (
     <div className="qna-cont cont">
       <div className="tit-wrap">
-        <h5>
+        <h2>
           자주묻는 질문 <span className="total">{filtered.length}</span>
-        </h5>
+        </h2>
         <Link href="/board/qna" className="btn-link mt-0">
           전체보기 <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']} />
         </Link>

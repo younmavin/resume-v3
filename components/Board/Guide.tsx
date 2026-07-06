@@ -29,9 +29,9 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
   return (
     <div className="cont">
       <div className="tit-wrap">
-        <h5>
+        <h2>
           코딩 가이드 자료 <span className="total">{filtered.length}</span>
-        </h5>
+        </h2>
         <Link href="/board/guide" className="btn-link mt-0">
           전체보기 <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']} />
         </Link>
