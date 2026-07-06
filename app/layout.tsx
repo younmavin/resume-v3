@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.scss'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import LenisProvider from '@/components/LenisProvider'
 import { portfolioData } from '@/data/portfolioData'
 import LayoutShell from '@/components/LayoutShell'
@@ -60,6 +61,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {children}
           </LayoutShell>
         </LenisProvider>
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
       </body>
     </html>
   )
