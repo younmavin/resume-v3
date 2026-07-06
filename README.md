@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+URL: https://resume-v3-nine.vercel.app/
 
-## Getting Started
+1.Next.js(App Router) 기반 서버/클라이언트 컴포넌트 분리 설계 및 공통 컴포넌트 모듈화
 
-First, run the development server:
+2.TypeScript 사용한 Props 타입 정의
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+3.웹표준·접근성 준수 마크업(W3C 유효성 검사 에러 0) 및 SEO 최적화
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4.SCSS 활용한 공통 스타일 변수 및 함수화를 통한 코드 재사용성 향상 및 유지보수 효율 개선
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5.GitHub REST API 연동 레포지토리 목록·언어 통계 동적 조회 및 차트 렌더링
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+6.Notion API 연동 게시판 콘텐츠 동적 조회, 캐싱(revalidate) 적용으로 응답 성능 확보
 
-## Learn More
+7.AWS S3 + CloudFront CDN 구성으로 이미지 리소스 분리 및 전송 최적화
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+8.Google Analytics 연동을 통한 사용자 행동 데이터 수집 및 분석
