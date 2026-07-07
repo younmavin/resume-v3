@@ -3,6 +3,7 @@ import '@/styles/globals.scss'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import LenisProvider from '@/components/LenisProvider'
 import { portfolioData } from '@/data/portfolioData'
+import { qnaData } from '@/data/qnaData'
 import LayoutShell from '@/components/LayoutShell'
 import { getGuideList } from '@/lib/notion'
 
@@ -54,10 +55,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     return acc
   }, {})
 
-  // Notion 코딩 가이드 자료 개수 (사이드바용, 메인과 동일 캐시 공유)
+  // 게시판 개수 (사이드바용)
   const guides = await getGuideList()
   const guideCount = guides.length
-  const qnaCount = 13 // QnA는 고정 데이터
+  const qnaCount = qnaData.length
 
   return (
     <html lang="ko">
