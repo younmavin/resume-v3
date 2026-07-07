@@ -3,11 +3,10 @@
 import Link from 'next/link'
 import '@/lib/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useScrollTop } from '@/hooks/useScrollTop'
 
 const Bottombar = ({ onMenuClick }: { onMenuClick?: () => void }) => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  const { scrollToTop } = useScrollTop()
 
   return (
     <footer className="bottombar">

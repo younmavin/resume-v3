@@ -2232,6 +2232,7 @@ a {
 .intro-cont .cont-body .txt-wrap .txt-bx {
   padding-left: 2rem;
   box-sizing: border-box;
+  width: 100%;
 }
 .intro-cont .cont-body .txt-wrap .txt-bx dl {
   margin-bottom: 6rem;
@@ -2903,6 +2904,29 @@ body {
   width: 100%;
 }
 
+body > .btn-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: none;
+  background-color: #fafafa;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  z-index: 9;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+body > .btn-top:hover {
+  background-color: #748df0;
+  color: #fafafa;
+}
+
 a,
 button {
   color: #363636;
@@ -3331,6 +3355,11 @@ aside {
   }
   .table-list table tbody tr td.deps figure figcaption {
     max-width: 30rem;
+  }
+}
+@media screen and (max-width: 1200px) {
+  body > .btn-top {
+    display: none;
   }
 }
 @media screen and (max-width: 768px) {

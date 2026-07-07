@@ -32,7 +32,26 @@ body {
   gap: rem(50px);
   width: 100%;
 }
-
+body > .btn-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  @include flex-center;
+  width: 45px;
+  height: 45px;
+  border: none;
+  background-color: $white;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: $bx-shadow01;
+  z-index: 9;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background-color: $color-sub;
+    color: $white;
+  }
+}
 a,
 button {
   color: $black;
@@ -498,6 +517,12 @@ aside {
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  body > .btn-top {
+    display: none;
   }
 }
 @media screen and (max-width: 768px) {
