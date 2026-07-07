@@ -44,4 +44,4 @@ async function fetchGuideList(): Promise<GuideItem[]> {
   }
 }
 
-export const getGuideList = unstable_cache(fetchGuideList, ['notion-guide-list'], { revalidate: 3600, tags: ['notion'] })
+export const getGuideList = unstable_cache(fetchGuideList, ['notion-guide-list'], { revalidate: 300, tags: ['notion'] })
