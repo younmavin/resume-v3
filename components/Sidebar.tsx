@@ -20,14 +20,13 @@ type SidebarProps = {
   portfolioCounts: Record<string, number>
   gitTotal: number
   gitCounts: Record<string, number>
+  guideCount: number
+  qnaCount: number
   open?: boolean
   onClose?: () => void
 }
 
-const guideCount = 5
-const qnaCount = 13
-
-const Sidebar = ({ portfolioTotal, portfolioCounts, gitTotal, gitCounts, open = false, onClose }: SidebarProps) => {
+const Sidebar = ({ portfolioTotal, portfolioCounts, gitTotal, gitCounts, guideCount, qnaCount, open = false, onClose }: SidebarProps) => {
   const ref = useParallax()
   const pathname = usePathname()
 

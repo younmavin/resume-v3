@@ -11,14 +11,16 @@ type LayoutShellProps = {
   portfolioCounts: Record<string, number>
   gitTotal: number
   gitCounts: Record<string, number>
+  guideCount: number
+  qnaCount: number
 }
 
-const LayoutShell = ({ children, portfolioTotal, portfolioCounts, gitTotal, gitCounts }: LayoutShellProps) => {
+const LayoutShell = ({ children, portfolioTotal, portfolioCounts, gitTotal, gitCounts, guideCount, qnaCount }: LayoutShellProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <>
-      <Sidebar portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts} guideCount={guideCount} qnaCount={qnaCount} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <main>{children}</main>
       <Contactbar />
       <Bottombar onMenuClick={() => setSidebarOpen((prev) => !prev)} />

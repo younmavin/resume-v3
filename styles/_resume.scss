@@ -101,7 +101,7 @@
     justify-content: center;
     font-size: rem(14px);
     gap: rem(10px);
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
     .chart-item {
       width: rem(300px);
       height: rem(180px);

@@ -4,6 +4,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import LenisProvider from '@/components/LenisProvider'
 import { portfolioData } from '@/data/portfolioData'
 import LayoutShell from '@/components/LayoutShell'
+import { getGuideList } from '@/lib/notion'
 
 // app/layout.tsx
 export const metadata: Metadata = {
@@ -53,11 +54,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     return acc
   }, {})
 
+  // Notion 코딩 가이드 자료 개수 (사이드바용, 메인과 동일 캐시 공유)
+  const guides = await getGuideList()
+  const guideCount = guides.length
+  const qnaCount = 13 // QnA는 고정 데이터
+
   return (
     <html lang="ko">
       <body>
         <LenisProvider>
-          <LayoutShell portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts}>
+          <LayoutShell portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts} guideCount={guideCount} qnaCount={qnaCount}>
             {children}
           </LayoutShell>
         </LenisProvider>
