@@ -13,7 +13,7 @@ export type PortfolioItem = {
 
 export const portfolioData: PortfolioItem[] = [
   {
-    title: '포트폴리오 Verson3',
+    title: '포트폴리오 Version3',
     type: '포트폴리오 웹',
     img: 'https://d3az2v3o9tyrsq.cloudfront.net/pf_01.jpg',
     desc: '대시보드 + 머터리얼 디자인으로 제작',
@@ -43,7 +43,7 @@ export const portfolioData: PortfolioItem[] = [
     link: 'https://resume-v3-nine.vercel.app',
   },
   {
-    title: '포트폴리오 Verson2',
+    title: '포트폴리오 Version2',
     type: '포트폴리오 웹',
     img: 'https://d3az2v3o9tyrsq.cloudfront.net/pf_02.jpg',
     desc: 'Windows 98 + Windows XP 테마를 기반으로 제작',
@@ -70,7 +70,7 @@ export const portfolioData: PortfolioItem[] = [
     link: 'https://ddw6229.dothome.co.kr',
   },
   {
-    title: '포트폴리오 Verson1',
+    title: '포트폴리오 Version1',
     type: '포트폴리오 웹',
     img: 'https://d3az2v3o9tyrsq.cloudfront.net/pf_03.jpg',
     desc: '텍스트에 집중한 문서형 디자인으로 제작',
