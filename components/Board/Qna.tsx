@@ -5,6 +5,12 @@ import Link from 'next/link'
 import '@/lib/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { qnaData, QnaData } from '@/data/qnaData'
+import SearchBar from '@/components/SearchBar'
+
+const FILTER_TYPES = ['전체', '코딩', '디자인', '기타'] as const
+type FilterType = (typeof FILTER_TYPES)[number]
+
+const POPULAR_KEYWORDS = ['웹표준', '크로스브라우징', '최적화', 'SPA']
 
 type QnaItemProps = { item: QnaData; id: string }
 
@@ -18,14 +24,25 @@ const QnaItem = ({ item, id }: QnaItemProps) => {
   }, [])
 
   return (
-    <li className={isOpen ? 'active' : ''}>
+    <li
+      className={isOpen ? 'active' : ''}
+      onClick={() => setIsOpen((prev) => !prev)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault() // Space 스크롤 방지
+          setIsOpen((prev) => !prev)
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-expanded={isOpen}
+      aria-controls={`${id}-ans`}
+    >
       <p className="faq">
-        <button type="button" onClick={() => setIsOpen((prev) => !prev)} aria-expanded={isOpen} aria-controls={`${id}-ans`}>
-          <span>
-            <span>{item.faq}</span>
-          </span>
-          <FontAwesomeIcon icon={['fas', 'chevron-down']} />
-        </button>
+        <span className="txt">
+          <span>{item.faq}</span>
+        </span>
+        <FontAwesomeIcon icon={['fas', 'chevron-down']} />
       </p>
       <p className="ans" id={`${id}-ans`} ref={ref}>
         {item.ans}
@@ -35,23 +52,35 @@ const QnaItem = ({ item, id }: QnaItemProps) => {
 }
 
 const QnaList = ({ perPage = 10 }: { perPage?: number }) => {
-  const [keyword, setKeyword] = useState('')
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
+  const [filter, setFilter] = useState<FilterType>('전체')
 
-  const filtered = qnaData.filter((item) => item.faq.toLowerCase().includes(search.toLowerCase()) || item.ans.toLowerCase().includes(search.toLowerCase()))
+  // 검색만 적용된 결과 (필터 버튼 카운트용)
+  const searched = qnaData.filter((item) => item.faq.toLowerCase().includes(search.toLowerCase()) || item.ans.toLowerCase().includes(search.toLowerCase()))
+
+  // 검색 + 타입 필터 적용된 결과
+  const filtered = filter === '전체' ? searched : searched.filter((item) => item.type === filter)
 
   const totalPage = Math.ceil(filtered.length / perPage)
   const current = filtered.slice((page - 1) * perPage, page * perPage)
 
-  const handleSearch = () => {
-    setSearch(keyword)
+  const countByType = (type: FilterType) => (type === '전체' ? searched.length : searched.filter((item) => item.type === type).length)
+
+  const handleSearch = (word: string) => {
+    setSearch(word)
+    setFilter('전체')
     setPage(1)
   }
 
   const handleReset = () => {
-    setKeyword('')
     setSearch('')
+    setFilter('전체')
+    setPage(1)
+  }
+
+  const handleFilter = (type: FilterType) => {
+    setFilter(type)
     setPage(1)
   }
 
@@ -59,43 +88,44 @@ const QnaList = ({ perPage = 10 }: { perPage?: number }) => {
     <div className="qna-cont cont">
       <div className="tit-wrap">
         <h2>
-          자주묻는 질문 <span className="total">{filtered.length}</span>
+          자주묻는 질문 <span className="total">{qnaData.length}</span>
         </h2>
         <Link href="/board/qna" className="btn-link mt-0">
           전체보기 <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']} />
         </Link>
       </div>
-      <fieldset className="search-bar">
-        <input type="text" placeholder="검색어를 입력해 주세요" value={keyword} onChange={(e) => setKeyword(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSearch()} />
-        <div className="btn-wrap">
-          <button type="button" className="btn-submit" onClick={handleSearch} aria-label="검색">
-            <FontAwesomeIcon icon={['fas', 'magnifying-glass']} />
-          </button>
-          <button type="button" className="btn-refrash" onClick={handleReset} aria-label="검색 초기화">
-            <FontAwesomeIcon icon={['fas', 'arrow-rotate-right']} />
-          </button>
-        </div>
-      </fieldset>
-      {filtered.length > 0 ? (
-        <ul className="list">
-          {current.map((item, i) => (
-            <QnaItem key={`${page}-${i}`} item={item} id={`qna-${page}-${i}`} />
-          ))}
-        </ul>
-      ) : (
-        <p style={{ textAlign: 'center', padding: '20px' }}>검색 결과가 없습니다.</p>
-      )}
-      <div className="paging">
-        <p>
-          페이지 <span className="current">{page}</span> / <span className="total">{totalPage || 1}</span>
-        </p>
-        <div className="btn-wrap">
-          <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>
-            <FontAwesomeIcon icon={['fas', 'arrow-left']} /> 이전
-          </button>
-          <button onClick={() => setPage((p) => Math.min(p + 1, totalPage))} disabled={page === totalPage || totalPage === 0}>
-            다음 <FontAwesomeIcon icon={['fas', 'arrow-right']} />
-          </button>
+      <SearchBar popularKeywords={POPULAR_KEYWORDS} onSearch={handleSearch} onReset={handleReset} />
+      <ul className="filter">
+        {FILTER_TYPES.map((type) => (
+          <li key={type}>
+            <button type="button" className={filter === type ? 'active' : ''} onClick={() => handleFilter(type)}>
+              {type} <span>{countByType(type)}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div className="list-wrap">
+        {filtered.length > 0 ? (
+          <ul className="list">
+            {current.map((item, i) => (
+              <QnaItem key={`${filter}-${page}-${i}`} item={item} id={`qna-${page}-${i}`} />
+            ))}
+          </ul>
+        ) : (
+          <p style={{ textAlign: 'center', padding: '20px' }}>검색 결과가 없습니다.</p>
+        )}
+        <div className="paging">
+          <p>
+            페이지 <span className="current">{page}</span> / <span className="total">{totalPage || 1}</span>
+          </p>
+          <div className="btn-wrap">
+            <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>
+              <FontAwesomeIcon icon={['fas', 'arrow-left']} /> 이전
+            </button>
+            <button onClick={() => setPage((p) => Math.min(p + 1, totalPage))} disabled={page === totalPage || totalPage === 0}>
+              다음 <FontAwesomeIcon icon={['fas', 'arrow-right']} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

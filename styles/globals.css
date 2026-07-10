@@ -1997,82 +1997,73 @@ a {
     gap: 0;
   }
 }
-.qna-cont .list li {
-  margin-bottom: 2rem;
-  cursor: pointer;
+.qna-cont .list-wrap {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
-.qna-cont .list li.active .faq svg {
+.qna-cont .list-wrap .list li {
+  background-color: #fafafa;
+  padding: 2rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-bottom: 1px solid #e9e9e9;
+  transition: all 0.2s;
+}
+.qna-cont .list-wrap .list li:hover .faq {
+  color: #748df0;
+}
+.qna-cont .list-wrap .list li.active {
+  padding: 3rem 2rem;
+  border: 1px solid #5a7bf0;
+  margin: 1rem 0;
+}
+.qna-cont .list-wrap .list li.active .faq {
+  font-size: 1.6rem;
+  color: #5a7bf0;
+}
+.qna-cont .list-wrap .list li.active .faq svg {
   transform: rotate(180deg);
 }
-.qna-cont .list li.active .ans {
+.qna-cont .list-wrap .list li.active .ans {
   display: flex;
   transform: translateY(0);
 }
-.qna-cont .list li .faq button {
-  width: 100%;
-  border: none;
-  background-color: #dde1ec;
+.qna-cont .list-wrap .list li:last-child.active {
+  margin-bottom: 0;
+}
+.qna-cont .list-wrap .list li .faq {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
-  box-sizing: border-box;
-  border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-  font-size: 1.7rem;
-  font-weight: 400;
-  color: #363636;
-  text-align: start;
+  word-break: keep-all;
+  transition: all 0.2s;
   gap: 1rem;
-  font-family: "Pretendard", sans-serif;
-  line-height: 1.7;
-  cursor: pointer;
 }
-.qna-cont .list li .faq button > span {
-  display: flex;
-  align-items: start;
-  gap: 0.5rem;
-}
-.qna-cont .list li .faq button > span span {
-  animation: fade-up 1s forwards;
-  opacity: 0;
-}
-.qna-cont .list li .faq button > span::before {
-  content: "Q.";
-  color: #4265f5;
-  font-weight: 500;
-  height: -moz-fit-content;
-  height: fit-content;
-  line-height: 1;
-  transform: translateY(0.5rem);
-}
-.qna-cont .list li .faq button svg {
-  width: 1.5rem;
+.qna-cont .list-wrap .list li .faq svg {
   transition: all 0.2s;
 }
-.qna-cont .list li .ans {
-  padding: 3rem 2rem;
-  box-sizing: border-box;
-  background-color: #fafafa;
-  border-radius: 1rem;
-  margin-top: 1rem;
-  text-wrap: balance;
-  word-break: keep-all;
+.qna-cont .list-wrap .list li .faq .txt {
+  display: flex;
+  gap: 5px;
+  animation: fade-up 1s forwards;
+}
+.qna-cont .list-wrap .list li .faq .txt::before {
+  content: "Q.";
+  color: #5a7bf0;
+}
+.qna-cont .list-wrap .list li .ans {
   display: flex;
   gap: 0.5rem;
   display: none;
-  transition: 0.3s;
-  transform: translateY(-2rem);
-  height: -moz-fit-content;
-  height: fit-content;
-  pointer-events: none;
-  margin-bottom: 4rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 1rem;
+  word-break: keep-all;
+  text-wrap: balance;
+  animation: fade-up 1s forwards;
 }
-.qna-cont .list li .ans::before {
+.qna-cont .list-wrap .list li .ans::before {
   content: "A.";
-  color: #4265f5;
-  font-weight: 500;
+  color: #5a7bf0;
 }
 
 .personality {
@@ -2792,6 +2783,11 @@ a {
 .portfolio-list-cont .list-item .skill span.gsap {
   background-color: #caeecf;
 }
+.portfolio-list-cont .paging {
+  border-radius: 1rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
 
 @media screen and (max-width: 1024px) {
   .portfolio-list-cont .list-item figure {
@@ -3100,7 +3096,8 @@ aside {
   background-color: #748df0;
   color: #fafafa;
 }
-.cont .search-bar {
+
+.search-bar {
   width: 100%;
   max-width: 60rem;
   background: #fafafa;
@@ -3113,45 +3110,95 @@ aside {
   justify-content: space-between;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
-.cont .search-bar input,
-.cont .search-bar button {
+.search-bar input,
+.search-bar button {
   border: none;
-}
-.cont .search-bar input {
   background: none;
-  font-size: 1.5rem;
+}
+.search-bar input svg,
+.search-bar button svg {
+  font-size: 1.8rem;
+  color: #757575;
+}
+.search-bar input {
+  background: none;
+  font-size: 1.6rem;
   padding-left: 2rem;
+  width: 90%;
+  height: 100%;
+  outline: none;
+  padding-left: 0;
+}
+.search-bar .input-wrap {
+  position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
-.cont .search-bar .btn-wrap {
+.search-bar .input-wrap .rolling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.search-bar .input-wrap .rolling ul li {
+  height: 5.5rem;
+  display: flex;
+  align-items: center;
+}
+.search-bar .input-wrap .rolling ul li button {
+  pointer-events: auto;
+  background: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 100%;
+}
+.search-bar .input-wrap .rolling ul li button .rank {
+  font-weight: 700;
+  color: #4265f5;
+  flex-shrink: 0;
+}
+.search-bar .input-wrap .rolling ul li button .word {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search-bar .btn-wrap {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.cont .search-bar .btn-wrap button {
+.search-bar .btn-wrap button {
   width: 3.5rem;
   height: 3.5rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   cursor: pointer;
+  background-color: #ebeaea;
 }
-.cont .search-bar .btn-wrap button svg {
+.search-bar .btn-wrap button:hover svg {
+  color: #5a7bf0;
+}
+.search-bar .btn-wrap button svg {
   font-size: 1.5rem;
-  color: #748df0;
 }
 
 .paging {
-  background-color: #fafafa;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 1.6rem;
-  background-color: #eeeff4;
+  background-color: #fafafa;
   box-sizing: border-box;
-  margin-top: 3rem;
-  border-radius: 1rem;
+  padding: 2rem;
+  margin-top: 0;
 }
 .paging .current {
   color: #4265f5;
@@ -3198,55 +3245,91 @@ aside {
   color: #363636;
 }
 
-.table-list {
+.filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+.filter li {
+  position: relative;
+}
+.filter li:last-child::after {
+  display: none;
+}
+.filter li::after {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 0.5px;
+  background-color: #757575;
+  top: 50%;
+  right: -15px;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+.filter li button {
+  border: none;
+  background: none;
+  font-size: 1.6rem;
+  padding: 0;
+  box-sizing: border-box;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+}
+.filter li button.active {
+  color: #5a7bf0;
+}
+
+.table-wrap {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   border-radius: 1rem;
   overflow: hidden;
-  overflow-x: auto;
 }
-.table-list table {
+.table-wrap .table-list table {
   width: 100%;
 }
-.table-list table thead {
+.table-wrap .table-list table thead {
   background-color: #dde1ec;
   border-radius: 1rem 1rem 0 0;
   font-size: 1.5rem;
 }
-.table-list table thead tr th {
+.table-wrap .table-list table thead tr th {
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: start;
   white-space: nowrap;
 }
-.table-list table tbody tr {
+.table-wrap .table-list table tbody tr {
   border-bottom: 1px solid #e9e9e9;
   background-color: #fafafa;
   transition: all 0.2s;
   cursor: pointer;
 }
-.table-list table tbody tr:hover {
+.table-wrap .table-list table tbody tr:hover {
   background-color: #e9eaee;
 }
-.table-list table tbody tr:hover td.deps figure .ico {
+.table-wrap .table-list table tbody tr:hover td.deps figure .ico {
   background-color: #5a7bf0;
 }
-.table-list table tbody tr:hover td.deps figure .ico svg {
+.table-wrap .table-list table tbody tr:hover td.deps figure .ico svg {
   color: #fafafa;
 }
-.table-list table tbody tr:hover td.ico svg {
+.table-wrap .table-list table tbody tr:hover td.ico svg {
   color: #5a7bf0;
 }
-.table-list table tbody tr td {
+.table-wrap .table-list table tbody tr td {
   padding: 1.5rem;
   box-sizing: border-box;
   vertical-align: middle;
 }
-.table-list table tbody tr td.deps figure {
+.table-wrap .table-list table tbody tr td.deps figure {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
-.table-list table tbody tr td.deps figure .ico {
+.table-wrap .table-list table tbody tr td.deps figure .ico {
   width: 5rem;
   min-width: 5rem;
   height: 5rem;
@@ -3257,13 +3340,13 @@ aside {
   border-radius: 50%;
   transition: all 0.2s;
 }
-.table-list table tbody tr td.deps figure .ico svg {
+.table-wrap .table-list table tbody tr td.deps figure .ico svg {
   width: 2.5rem;
   font-size: 2.2rem;
   color: #4265f5;
   transition: all 0.2s;
 }
-.table-list table tbody tr td.deps figure figcaption {
+.table-wrap .table-list table tbody tr td.deps figure figcaption {
   width: 100%;
   max-width: 50rem;
   min-width: 0;
@@ -3271,7 +3354,7 @@ aside {
   animation: fade-up 1s forwards;
   opacity: 0;
 }
-.table-list table tbody tr td.deps figure figcaption small {
+.table-wrap .table-list table tbody tr td.deps figure figcaption small {
   color: #757575;
   font-size: 90%;
   text-overflow: ellipsis;
@@ -3280,64 +3363,58 @@ aside {
   overflow: hidden;
   display: inline-block !important;
 }
-.table-list table tbody tr td.skill {
+.table-wrap .table-list table tbody tr td.skill {
   animation: fade-up 1s forwards;
   opacity: 0;
 }
-.table-list table tbody tr td.skill span {
+.table-wrap .table-list table tbody tr td.skill span {
   font-size: 1.3rem;
   padding: 0.5rem 1.5rem;
   box-sizing: border-box;
   border-radius: 3rem;
   background-color: #dde1ec;
 }
-.table-list table tbody tr td.skill span.html {
+.table-wrap .table-list table tbody tr td.skill span.html {
   background-color: #fabcc0;
 }
-.table-list table tbody tr td.skill span.css {
+.table-wrap .table-list table tbody tr td.skill span.css {
   background-color: #c2cff3;
 }
-.table-list table tbody tr td.skill span.js {
+.table-wrap .table-list table tbody tr td.skill span.js {
   background-color: #f0e5cb;
 }
-.table-list table tbody tr td.skill span.ts {
+.table-wrap .table-list table tbody tr td.skill span.ts {
   background-color: #ccdff7;
 }
-.table-list table tbody tr td.skill span.vue {
+.table-wrap .table-list table tbody tr td.skill span.vue {
   background-color: #b2eedd;
 }
-.table-list table tbody tr td.skill span.react {
+.table-wrap .table-list table tbody tr td.skill span.react {
   background-color: #caebf0;
 }
-.table-list table tbody tr td.skill span.next {
+.table-wrap .table-list table tbody tr td.skill span.next {
   background-color: #c1c1d6;
 }
-.table-list table tbody tr td.skill span.php {
+.table-wrap .table-list table tbody tr td.skill span.php {
   background-color: #d9c8f5;
 }
-.table-list table tbody tr td.skill span.gsap {
+.table-wrap .table-list table tbody tr td.skill span.gsap {
   background-color: #caeecf;
 }
-.table-list table tbody tr td.update {
+.table-wrap .table-list table tbody tr td.update {
   font-size: 1.6rem;
   color: #757575;
   animation: fade-up 1s forwards;
   opacity: 0;
 }
-.table-list table tbody tr td.ico {
+.table-wrap .table-list table tbody tr td.ico {
   transition: all 0.2s;
 }
-.table-list table tbody tr td.ico svg {
+.table-wrap .table-list table tbody tr td.ico svg {
   width: 3rem;
   font-size: 2.6rem;
   color: #dde1ec;
   transition: all 0.2s;
-}
-.table-list .paging {
-  border-radius: 0;
-  margin-top: 0;
-  background-color: #fafafa;
-  padding: 1.5rem 2rem;
 }
 
 @media screen and (max-width: 1920px) {
@@ -3360,6 +3437,10 @@ aside {
 @media screen and (max-width: 1200px) {
   body > .btn-top {
     display: none;
+  }
+  .table-wrap .table-list {
+    overflow-y: hidden;
+    overflow-x: auto;
   }
 }
 @media screen and (max-width: 768px) {
