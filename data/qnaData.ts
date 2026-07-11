@@ -28,7 +28,7 @@ export const qnaData: QnaData[] = [
     type: '코딩',
   },
   {
-    faq: '크로스 브라우징은 어디까지 지원하나요?',
+    faq: '크로스브라우징은 어디까지 지원하나요?',
     ans: '일반적으로 IE를 제외한 최신 브라우저(Chrome, Edge, Safari, Firefox)를 지원합니다.',
     type: '코딩',
   },
