@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import '@/lib/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,6 +17,13 @@ const COLORS: Record<string, string> = {
 }
 
 const GitChart = ({ repos = [] }: { repos: any[] }) => {
+  // 차트는 마운트 후에만 렌더링 (recharts hydration mismatch 방지)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const langCount: Record<string, number> = {}
 
   repos.forEach((repo) => {
@@ -55,22 +63,24 @@ const GitChart = ({ repos = [] }: { repos: any[] }) => {
         </div>
         <div className="chart-inner">
           <div className="chart">
-            <ResponsiveContainer width="100%" height="100%" style={{ outline: 'none' }}>
-              <PieChart style={{ outline: 'none' }}>
-                <Pie data={data} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" labelLine={false} label={renderCustomLabel} style={{ outline: 'none' }}>
-                  {data.map((entry, i) => (
-                    <Cell key={i} fill={COLORS[entry.name] ?? COLORS['기타']} />
-                  ))}
-                </Pie>
-                <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize={28} fontWeight={700} fill="#333">
-                  {repos.length}
-                </text>
-                <text x="50%" y="50%" dy={20} textAnchor="middle" dominantBaseline="middle" fontSize={12} fill="#999">
-                  total
-                </text>
-                <Tooltip active={false} />
-              </PieChart>
-            </ResponsiveContainer>
+            {mounted && (
+              <ResponsiveContainer width="100%" height="100%" style={{ outline: 'none' }}>
+                <PieChart style={{ outline: 'none' }}>
+                  <Pie data={data} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" labelLine={false} label={renderCustomLabel} style={{ outline: 'none' }}>
+                    {data.map((entry, i) => (
+                      <Cell key={i} fill={COLORS[entry.name] ?? COLORS['기타']} />
+                    ))}
+                  </Pie>
+                  <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize={28} fontWeight={700} fill="#333">
+                    {repos.length}
+                  </text>
+                  <text x="50%" y="50%" dy={20} textAnchor="middle" dominantBaseline="middle" fontSize={12} fill="#999">
+                    total
+                  </text>
+                  <Tooltip active={false} />
+                </PieChart>
+              </ResponsiveContainer>
+            )}
           </div>
           <ul className="chart-legend">
             {data.map((entry, i) => (
