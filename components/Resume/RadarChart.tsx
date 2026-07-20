@@ -1,5 +1,6 @@
 // components/Resume/RadarChart.tsx
 'use client'
+import { useState, useEffect } from 'react'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts'
 
 const discData = [
@@ -18,28 +19,39 @@ const ncsData = [
 ]
 
 const PersonalityChart = () => {
+  // 차트는 마운트 후에만 렌더링 (recharts hydration mismatch 방지)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <div className="chart-wrap">
       <div className="chart-item">
         <p className="chart-tit">NCS</p>
-        <ResponsiveContainer width="100%" height="100%">
-          <RadarChart data={ncsData}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="subject" />
-            <Radar dataKey="value" stroke="#4265f5" fill="#4265f5" fillOpacity={0.3} />
-          </RadarChart>
-        </ResponsiveContainer>
+        {mounted && (
+          <ResponsiveContainer width="100%" height="100%">
+            <RadarChart data={ncsData}>
+              <PolarGrid />
+              <PolarAngleAxis dataKey="subject" />
+              <Radar dataKey="value" stroke="#4265f5" fill="#4265f5" fillOpacity={0.3} />
+            </RadarChart>
+          </ResponsiveContainer>
+        )}
       </div>
       <div className="line"></div>
       <div className="chart-item">
         <p className="chart-tit">DISC</p>
-        <ResponsiveContainer width="100%" height="100%">
-          <RadarChart data={discData}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="subject" />
-            <Radar dataKey="value" stroke="#4265f5" fill="#4265f5" fillOpacity={0.3} />
-          </RadarChart>
-        </ResponsiveContainer>
+        {mounted && (
+          <ResponsiveContainer width="100%" height="100%">
+            <RadarChart data={discData}>
+              <PolarGrid />
+              <PolarAngleAxis dataKey="subject" />
+              <Radar dataKey="value" stroke="#4265f5" fill="#4265f5" fillOpacity={0.3} />
+            </RadarChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </div>
   )
