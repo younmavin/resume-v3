@@ -24,29 +24,33 @@ const QnaItem = ({ item, id }: QnaItemProps) => {
   }, [])
 
   return (
-    <li
-      className={isOpen ? 'active' : ''}
-      onClick={() => setIsOpen((prev) => !prev)}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault() // Space 스크롤 방지
-          setIsOpen((prev) => !prev)
-        }
-      }}
-      tabIndex={0}
-      role="button"
-      aria-expanded={isOpen}
-      aria-controls={`${id}-ans`}
-    >
-      <p className="faq">
-        <span className="txt">
-          <span>{item.faq}</span>
-        </span>
-        <FontAwesomeIcon icon={['fas', 'chevron-down']} />
-      </p>
-      <p className="ans" id={`${id}-ans`} ref={ref}>
-        {item.ans}
-      </p>
+    <li className={isOpen ? 'active' : ''}>
+      <div
+        className="list-item"
+        tabIndex={0}
+        onClick={() => setIsOpen((prev) => !prev)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setIsOpen((prev) => !prev)
+          }
+        }}
+        role="button"
+        aria-expanded={isOpen}
+        aria-controls={`${id}-ans`}
+      >
+        <div className="faq">
+          <span className="txt">
+            <span>{item.faq}</span>
+          </span>
+
+          <FontAwesomeIcon icon={['fas', 'chevron-down']} />
+        </div>
+
+        <p className="ans" id={`${id}-ans`} ref={ref}>
+          {item.ans}
+        </p>
+      </div>
     </li>
   )
 }

@@ -2111,7 +2111,6 @@ header button {
 }
 .qna-cont .list-wrap .list li {
   background-color: var(--bg-card);
-  padding: 2rem;
   box-sizing: border-box;
   cursor: pointer;
   border-bottom: 1px solid var(--border-color);
@@ -2121,9 +2120,11 @@ header button {
   color: var(--accent-soft);
 }
 .qna-cont .list-wrap .list li.active {
-  padding: 3rem 2rem;
   border: 1px solid var(--accent-strong);
   margin: 1rem 0;
+}
+.qna-cont .list-wrap .list li.active .list-item {
+  padding: 3rem 2rem;
 }
 .qna-cont .list-wrap .list li.active .faq {
   font-size: 1.6rem;
@@ -2138,6 +2139,9 @@ header button {
 }
 .qna-cont .list-wrap .list li:last-child.active {
   margin-bottom: 0;
+}
+.qna-cont .list-wrap .list li .list-item {
+  padding: 2rem;
 }
 .qna-cont .list-wrap .list li .faq {
   display: flex;
