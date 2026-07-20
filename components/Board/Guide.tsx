@@ -14,7 +14,9 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
   const [search, setSearch] = useState('')
 
   const filtered = guides.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()) || item.sub.toLowerCase().includes(search.toLowerCase()))
+
   const totalPage = Math.ceil(filtered.length / perPage)
+
   const current = filtered.slice((page - 1) * perPage, page * perPage)
 
   const handleSearch = (word: string) => {
@@ -37,11 +39,15 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
         <h2>
           코딩 가이드 자료 <span className="total">{guides.length}</span>
         </h2>
+
         <Link href="/board/guide" className="btn-link mt-0">
-          전체보기 <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']} />
+          전체보기
+          <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']} />
         </Link>
       </div>
+
       <SearchBar popularKeywords={POPULAR_KEYWORDS} onSearch={handleSearch} onReset={handleReset} />
+
       <div className="table-wrap">
         <div className="table-list">
           <table>
@@ -52,13 +58,13 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
                 <th></th>
               </tr>
             </thead>
+
             <tbody>
               {current.length > 0 ? (
                 current.map((item) => (
                   <tr
                     key={item.id}
                     className="row-link"
-                    role="link"
                     tabIndex={0}
                     aria-label={`${item.title} 자료 새 탭에서 열기`}
                     onClick={() => openGuide(item.url)}
@@ -70,16 +76,25 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
                     }}
                   >
                     <td className="deps item">
+                      <a href={item.url} target="_blank" rel="noopener noreferrer" className="sr-only">
+                        {item.title}
+                      </a>
+
                       <figure>
                         <div className="ico">
                           <FontAwesomeIcon icon={['fab', 'notion']} />
                         </div>
+
                         <figcaption>
-                          {item.title} <small>{item.sub}</small>
+                          {item.title}
+
+                          <small>{item.sub}</small>
                         </figcaption>
                       </figure>
                     </td>
+
                     <td className="update item">{item.date}</td>
+
                     <td className="ico">
                       <FontAwesomeIcon icon={['fas', 'circle-right']} />
                     </td>
@@ -87,7 +102,7 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
                 ))
               ) : (
                 <tr>
-                  <td colSpan={3} style={{ textAlign: 'center', padding: '20px' }}>
+                  <td colSpan={3} className="empty">
                     {guides.length === 0 ? '자료를 불러올 수 없습니다.' : '검색 결과가 없습니다.'}
                   </td>
                 </tr>
@@ -95,16 +110,21 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
             </tbody>
           </table>
         </div>
+
         <div className="paging">
           <p>
             페이지 <span className="current">{page}</span> / <span className="total">{totalPage || 1}</span>
           </p>
+
           <div className="btn-wrap">
             <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1}>
-              <FontAwesomeIcon icon={['fas', 'arrow-left']} /> 이전
+              <FontAwesomeIcon icon={['fas', 'arrow-left']} />
+              이전
             </button>
+
             <button onClick={() => setPage((p) => Math.min(p + 1, totalPage))} disabled={page === totalPage || totalPage === 0}>
-              다음 <FontAwesomeIcon icon={['fas', 'arrow-right']} />
+              다음
+              <FontAwesomeIcon icon={['fas', 'arrow-right']} />
             </button>
           </div>
         </div>

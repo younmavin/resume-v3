@@ -39,7 +39,6 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
                 <tr
                   key={repo.id}
                   className="row-link"
-                  role="link"
                   tabIndex={0}
                   aria-label={`${repo.name} GitHub 저장소 새 탭에서 열기`}
                   onClick={() => openRepo(repo.html_url)}
@@ -51,12 +50,17 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
                   }}
                 >
                   <td className="deps item">
+                    <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="sr-only">
+                      {repo.name}
+                    </a>
                     <figure>
                       <div className="ico">
                         <FontAwesomeIcon icon={['fab', 'github']} />
                       </div>
+
                       <figcaption>
-                        {repo.name} <small>{repo.description ?? '설명 없음'}</small>
+                        {repo.name}
+                        <small>{repo.description ?? '설명 없음'}</small>
                       </figcaption>
                     </figure>
                   </td>

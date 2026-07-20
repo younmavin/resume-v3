@@ -3770,6 +3770,17 @@ aside {
   color: var(--bg-soft);
   transition: all 0.2s;
 }
+.table-wrap .table-list table tbody tr .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .btn-util {
   position: fixed;
