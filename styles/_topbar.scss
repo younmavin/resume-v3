@@ -1,0 +1,53 @@
+@use './abstracts/_variables' as *;
+@use './abstracts/_mixins' as *;
+@use './abstracts/_functions' as *;
+
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include flex-between;
+  padding: rem(15px);
+  box-sizing: border-box;
+  z-index: 99;
+  background-color: $white;
+  display: none;
+  box-shadow: $bx-shadow01;
+  transition: transform 0.3s ease;
+  &.header.is-hide {
+    transform: translateY(-100%);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: rem(10px);
+    font-weight: 700;
+    color: $color-main;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: rem(20px);
+    .ico {
+      display: block;
+      width: rem(40px);
+      height: rem(40px);
+      background-color: $color-main;
+      @include flex-center;
+      color: var(--on-accent);
+      font-weight: 900;
+      border-radius: rem(2px);
+      font-size: rem(20px);
+    }
+  }
+  button {
+    border: none;
+    padding: 0;
+    background: none;
+    font-size: rem(25px);
+    color: $color-main;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .header {
+    display: flex;
+  }
+}

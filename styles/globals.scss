@@ -7,12 +7,14 @@
 @use './abstracts/_functions' as *;
 @use './_sidebar';
 @use './_contactbar';
+@use './_topbar';
 @use './_bottombar';
 @use './_project';
 @use './_board';
 @use './_resume';
 @use './_portfolio';
 @use './_loading';
+@use './_mail';
 // rem 변환 기준: 1rem = 10px
 
 html {
@@ -595,6 +597,9 @@ aside {
 }
 //laptop 사이즈 S
 @media screen and (max-width: 1200px) {
+  body {
+    padding-top: rem(100px) !important;
+  }
   .btn-util {
     display: none;
   }
@@ -629,7 +634,7 @@ aside {
     font-size: 55.1%; // 1rem ≈ 8.8px → body 17px 지정 시 ≈ 15px
   }
   body {
-    padding: rem(30px) rem(10px);
+    padding: rem(30px) rem(15px);
     padding-bottom: rem(80px);
   }
 }

@@ -1,0 +1,305 @@
+// styles/_loading.scss
+@use './abstracts/_variables' as *;
+@use './abstracts/_mixins' as *;
+@use './abstracts/_functions' as *;
+
+.mail-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  @include flex-center;
+
+  &-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &-inner {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: rem(560px);
+    max-height: 88vh;
+    overflow-y: auto;
+    background-color: var(--bg-card);
+    border-radius: rem(10px);
+    padding: rem(30px);
+    box-sizing: border-box;
+
+    h2 {
+      font-weight: 600;
+      font-size: rem(20px);
+      display: flex;
+      align-items: center;
+      gap: rem(8px);
+
+      svg {
+        color: var(--accent);
+        font-size: rem(22px);
+      }
+    }
+
+    .mail-desc {
+      font-size: rem(14px);
+      color: var(--text-secondary);
+      margin: rem(5px) 0 rem(20px);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: rem(20px);
+    }
+
+    .btn-close {
+      position: absolute;
+      top: rem(15px);
+      right: rem(15px);
+      border: none;
+      background: none;
+      cursor: pointer;
+      width: rem(35px);
+      height: rem(35px);
+      @include flex-center;
+      transition: all 0.2s;
+      svg {
+        font-size: rem(20px);
+        color: var(--text-secondary);
+      }
+      &:hover {
+        svg {
+          color: $color-main;
+        }
+      }
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: rem(12px) rem(10px);
+      margin-bottom: rem(12px);
+    }
+
+    .field {
+      label {
+        display: block;
+        font-size: rem(14px);
+        margin-bottom: rem(5px);
+        color: var(--text-primary);
+
+        em {
+          color: var(--accent);
+          font-style: normal;
+        }
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid var(--border-color);
+        background: none;
+        color: var(--text-primary);
+        border-radius: rem(5px);
+        padding: rem(10px);
+        box-sizing: border-box;
+        font-size: rem(15px);
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.2s;
+
+        &::placeholder {
+          color: var(--text-secondary);
+          opacity: 0.6;
+        }
+
+        &:focus {
+          border-color: var(--accent);
+        }
+      }
+
+      textarea {
+        min-height: rem(180px);
+        resize: vertical;
+        line-height: 1.6;
+      }
+
+      .err-msg {
+        font-size: rem(13px);
+        color: #e05252;
+        margin-top: rem(4px);
+      }
+
+      &.is-error {
+        input,
+        textarea {
+          border-color: #e05252;
+        }
+      }
+    }
+
+    .field-editor {
+      margin-bottom: rem(10px);
+    }
+
+    .mail-error {
+      color: #e05252;
+      font-size: rem(14px);
+      margin-top: rem(10px);
+    }
+
+    .btn-send {
+      margin-top: rem(20px);
+      background-color: var(--accent-soft);
+      color: var(--on-accent);
+      border: none;
+      padding: rem(15px) rem(20px);
+      width: 100%;
+      border-radius: rem(5px);
+      box-sizing: border-box;
+      @include flex-center;
+      gap: 5px;
+      font-size: rem(15px);
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: var(--accent-strong);
+        color: var(--on-accent);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+    }
+
+    .mail-result {
+      text-align: center;
+      padding: rem(20px) 0;
+
+      .success-icon {
+        position: relative;
+        width: rem(100px);
+        height: rem(100px);
+        margin: 0 auto rem(25px);
+        border-radius: 50%;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 rem(15px) rem(35px) rgba(34, 197, 94, 0.25);
+        animation: successPop 0.65s cubic-bezier(0.22, 1.5, 0.36, 1);
+
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          inset: rem(-10px);
+          border: rem(2px) solid rgba(34, 197, 94, 0.35);
+          border-radius: 50%;
+          animation: ripple 1.8s infinite;
+        }
+
+        &::after {
+          animation-delay: 0.45s;
+        }
+
+        svg {
+          color: #fff;
+          font-size: rem(52px);
+          animation: checkBounce 0.8s 0.2s both;
+        }
+      }
+
+      h3 {
+        margin-bottom: rem(12px);
+        font-size: rem(20px);
+        font-weight: 700;
+        color: var(--text-primary);
+        animation: fadeUp 0.5s 0.3s both;
+      }
+
+      p {
+        color: var(--text-secondary);
+        line-height: 1.4;
+        margin-bottom: rem(30px);
+        animation: fadeUp 0.5s 0.45s both;
+      }
+
+      .btn-send {
+        width: rem(180px);
+        margin: 0 auto;
+        animation: fadeUp 0.5s 0.6s both;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .mail-modal {
+    &-inner {
+      padding: rem(20px);
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field textarea {
+        min-height: rem(150px);
+      }
+    }
+  }
+}
+
+@keyframes successPop {
+  0% {
+    transform: scale(0.25) rotate(-20deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes checkBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  60% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(rem(18px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
