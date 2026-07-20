@@ -1,6 +1,5 @@
-// components/Resume/RadarChart.tsx
 'use client'
-import { useState, useEffect } from 'react'
+
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts'
 
 const discData = [
@@ -19,39 +18,48 @@ const ncsData = [
 ]
 
 const PersonalityChart = () => {
-  // 차트는 마운트 후에만 렌더링 (recharts hydration mismatch 방지)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   return (
     <div className="chart-wrap">
       <div className="chart-item">
         <p className="chart-tit">NCS</p>
-        {mounted && (
-          <ResponsiveContainer width="100%" height="100%">
-            <RadarChart data={ncsData}>
-              <PolarGrid stroke="var(--line-color)" />
-              <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--text-secondary)', fontSize: 13 }} />
-              <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.3} />
-            </RadarChart>
-          </ResponsiveContainer>
-        )}
+
+        <ResponsiveContainer width="100%" height="100%">
+          <RadarChart data={ncsData}>
+            <PolarGrid stroke="var(--line-color)" />
+
+            <PolarAngleAxis
+              dataKey="subject"
+              tick={{
+                fill: 'var(--text-secondary)',
+                fontSize: 13,
+              }}
+            />
+
+            <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.3} />
+          </RadarChart>
+        </ResponsiveContainer>
       </div>
-      <div className="line"></div>
+
+      <div className="line" />
+
       <div className="chart-item">
         <p className="chart-tit">DISC</p>
-        {mounted && (
-          <ResponsiveContainer width="100%" height="100%">
-            <RadarChart data={discData}>
-              <PolarGrid stroke="var(--line-color)" />
-              <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--text-secondary)', fontSize: 13 }} />
-              <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.3} />
-            </RadarChart>
-          </ResponsiveContainer>
-        )}
+
+        <ResponsiveContainer width="100%" height="100%">
+          <RadarChart data={discData}>
+            <PolarGrid stroke="var(--line-color)" />
+
+            <PolarAngleAxis
+              dataKey="subject"
+              tick={{
+                fill: 'var(--text-secondary)',
+                fontSize: 13,
+              }}
+            />
+
+            <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.3} />
+          </RadarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   )
