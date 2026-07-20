@@ -3,7 +3,7 @@
 @use './abstracts/_functions' as *;
 
 .sidebar {
-  background-color: #fff;
+  background-color: $white;
   padding: rem(30px);
   box-sizing: border-box;
   border-radius: rem(10px);
@@ -45,7 +45,7 @@
       height: rem(40px);
       background-color: $color-main;
       @include flex-center;
-      color: #fff;
+      color: var(--on-accent);
       font-weight: 900;
       border-radius: rem(2px);
       font-size: rem(20px);
@@ -83,7 +83,7 @@
         }
         .total {
           background-color: $color-sub;
-          color: #fff;
+          color: var(--on-accent);
           font-weight: 300;
           font-size: rem(13px);
           border-radius: rem(30px);
@@ -94,7 +94,7 @@
       }
       ul {
         box-sizing: border-box;
-        border-left: 1.5px solid #e9e9e9;
+        border-left: 1.5px solid var(--border-color);
         li {
           &.active {
             a {
@@ -124,7 +124,7 @@
               opacity: 0;
             }
             &:hover {
-              background-color: #f3f4f6;
+              background-color: var(--bg-hover);
               &::before {
                 opacity: 1;
               }

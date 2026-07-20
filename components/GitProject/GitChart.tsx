@@ -6,14 +6,15 @@ import '@/lib/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 
+// 색상은 CSS 변수 참조 → 다크 모드 자동 대응
 const COLORS: Record<string, string> = {
-  HTML: '#d46a53',
-  CSS: '#496fd4',
-  JavaScript: '#dfc570',
-  TypeScript: '#6a92c4',
-  Vue: '#68b876',
-  React: '#82c3ca',
-  기타: '#C0BDD8',
+  HTML: 'var(--chart-html)',
+  CSS: 'var(--chart-css)',
+  JavaScript: 'var(--chart-js)',
+  TypeScript: 'var(--chart-ts)',
+  Vue: 'var(--chart-vue)',
+  React: 'var(--chart-react)',
+  기타: 'var(--chart-etc)',
 }
 
 const GitChart = ({ repos = [] }: { repos: any[] }) => {
@@ -66,15 +67,15 @@ const GitChart = ({ repos = [] }: { repos: any[] }) => {
             {mounted && (
               <ResponsiveContainer width="100%" height="100%" style={{ outline: 'none' }}>
                 <PieChart style={{ outline: 'none' }}>
-                  <Pie data={data} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" labelLine={false} label={renderCustomLabel} style={{ outline: 'none' }}>
+                  <Pie data={data} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" labelLine={false} label={renderCustomLabel} stroke="var(--bg-card)" style={{ outline: 'none' }}>
                     {data.map((entry, i) => (
                       <Cell key={i} fill={COLORS[entry.name] ?? COLORS['기타']} />
                     ))}
                   </Pie>
-                  <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize={28} fontWeight={700} fill="#333">
+                  <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize={28} fontWeight={700} fill="var(--text-primary)">
                     {repos.length}
                   </text>
-                  <text x="50%" y="50%" dy={20} textAnchor="middle" dominantBaseline="middle" fontSize={12} fill="#999">
+                  <text x="50%" y="50%" dy={20} textAnchor="middle" dominantBaseline="middle" fontSize={12} fill="var(--text-secondary)">
                     total
                   </text>
                   <Tooltip active={false} />
@@ -84,7 +85,7 @@ const GitChart = ({ repos = [] }: { repos: any[] }) => {
           </div>
           <ul className="chart-legend">
             {data.map((entry, i) => (
-              <li key={i} style={{ color: '#363636' }}>
+              <li key={i} style={{ color: 'var(--text-primary)' }}>
                 <span className="dot" style={{ background: COLORS[entry.name] ?? COLORS['기타'] }} />
                 {entry.name}
                 <span className="count" style={{ color: COLORS[entry.name] ?? COLORS['기타'] }}>

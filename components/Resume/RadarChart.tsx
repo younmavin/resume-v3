@@ -33,9 +33,9 @@ const PersonalityChart = () => {
         {mounted && (
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={ncsData}>
-              <PolarGrid />
-              <PolarAngleAxis dataKey="subject" />
-              <Radar dataKey="value" stroke="#4265f5" fill="#4265f5" fillOpacity={0.3} />
+              <PolarGrid stroke="var(--line-color)" />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--text-secondary)', fontSize: 13 }} />
+              <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.3} />
             </RadarChart>
           </ResponsiveContainer>
         )}
@@ -46,9 +46,9 @@ const PersonalityChart = () => {
         {mounted && (
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={discData}>
-              <PolarGrid />
-              <PolarAngleAxis dataKey="subject" />
-              <Radar dataKey="value" stroke="#4265f5" fill="#4265f5" fillOpacity={0.3} />
+              <PolarGrid stroke="var(--line-color)" />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--text-secondary)', fontSize: 13 }} />
+              <Radar dataKey="value" stroke="var(--accent)" fill="var(--accent)" fillOpacity={0.3} />
             </RadarChart>
           </ResponsiveContainer>
         )}

@@ -27,11 +27,32 @@
 }
 
 @mixin transition-hover {
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; // -webkit- 접두사는 autoprefixer가 처리
 }
 
 @mixin txt-set {
   word-break: keep-all;
   text-wrap: balance;
+}
+
+// =========================================================
+// 스킬 뱃지 언어별 배경색 (globals·portfolio 공용)
+// =========================================================
+$badge-colors: (
+  'html': $bg-html,
+  'css': $bg-css,
+  'js': $bg-js,
+  'ts': $bg-ts,
+  'vue': $bg-vue,
+  'react': $bg-react,
+  'next': $bg-next,
+  'php': $bg-php,
+  'gsap': $bg-gsap,
+);
+@mixin skill-badge-colors {
+  @each $name, $bg in $badge-colors {
+    &.#{$name} {
+      background-color: $bg;
+    }
+  }
 }

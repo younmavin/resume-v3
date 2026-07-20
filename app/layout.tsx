@@ -61,8 +61,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const qnaCount = qnaData.length
 
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body>
+        {/* 다크 모드 FOUC 방지: 페인트 전에 저장된 테마를 html에 적용 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=d?'dark':'light'}catch(e){}})()`,
+          }}
+        />
         <LenisProvider>
           <LayoutShell portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts} guideCount={guideCount} qnaCount={qnaCount}>
             {children}

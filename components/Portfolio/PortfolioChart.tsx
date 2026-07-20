@@ -4,27 +4,14 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import '@/lib/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import { portfolioData } from '@/data/portfolioData'
 
+// 색상은 CSS 변수 참조 → 다크 모드 자동 대응
 const COLORS: Record<string, string> = {
-  '포트폴리오 웹': '#91a6f7',
-  '웹 매거진': '#6a86f5',
-  '기타 웹': '#9fb2f7',
-}
-
-const renderLegend = (props: any) => {
-  const { payload } = props
-  return (
-    <ul className="chart-legend">
-      {payload.map((entry: any, i: number) => (
-        <li key={i}>
-          <span className="dot" style={{ background: entry.color }} />
-          {entry.value}
-        </li>
-      ))}
-    </ul>
-  )
+  '포트폴리오 웹': 'var(--chart-blue-2)',
+  '웹 매거진': 'var(--chart-blue-1)',
+  '기타 웹': 'var(--chart-blue-3)',
 }
 
 const PortfolioChart = () => {
@@ -76,15 +63,15 @@ const PortfolioChart = () => {
             {mounted && (
               <ResponsiveContainer width="100%" height="100%" style={{ outline: 'none' }}>
                 <PieChart style={{ outline: 'none' }}>
-                  <Pie data={data} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" labelLine={false} label={renderCustomLabel} style={{ outline: 'none' }}>
+                  <Pie data={data} cx="50%" cy="50%" innerRadius={50} outerRadius={80} dataKey="value" labelLine={false} label={renderCustomLabel} stroke="var(--bg-card)" style={{ outline: 'none' }}>
                     {data.map((entry, i) => (
-                      <Cell key={i} fill={COLORS[entry.name] ?? '#C0BDD8'} />
+                      <Cell key={i} fill={COLORS[entry.name] ?? 'var(--chart-etc)'} />
                     ))}
                   </Pie>
-                  <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize={28} fontWeight={700} fill="#333">
+                  <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fontSize={28} fontWeight={700} fill="var(--text-primary)">
                     {portfolioData.length}
                   </text>
-                  <text x="50%" y="50%" dy={20} textAnchor="middle" dominantBaseline="middle" fontSize={12} fill="#999">
+                  <text x="50%" y="50%" dy={20} textAnchor="middle" dominantBaseline="middle" fontSize={12} fill="var(--text-secondary)">
                     total
                   </text>
                   <Tooltip active={false} />
@@ -94,10 +81,10 @@ const PortfolioChart = () => {
           </div>
           <ul className="chart-legend">
             {data.map((entry, i) => (
-              <li key={i} style={{ color: '#363636' }}>
-                <span className="dot" style={{ background: COLORS[entry.name] ?? '#C0BDD8' }} />
+              <li key={i} style={{ color: 'var(--text-primary)' }}>
+                <span className="dot" style={{ background: COLORS[entry.name] ?? 'var(--chart-etc)' }} />
                 {entry.name}
-                <span className="count" style={{ color: COLORS[entry.name] ?? '#C0BDD8' }}>
+                <span className="count" style={{ color: COLORS[entry.name] ?? 'var(--chart-etc)' }}>
                   {entry.value}개
                 </span>
               </li>

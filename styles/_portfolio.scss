@@ -15,7 +15,7 @@
 
   .card-wrap > li,
   .card-swiper .swiper-slide {
-    border-right: 1px solid #e9e9e9;
+    border-right: 1px solid var(--border-color);
     color: $gray;
     padding: rem(20px) rem(30px);
     box-sizing: border-box;
@@ -39,23 +39,23 @@
     &.active,
     &:hover {
       background-color: $color-sub;
-      color: #fff;
+      color: var(--on-accent);
       h3 {
-        color: #fff;
+        color: var(--on-accent);
         small {
-          color: #fff;
+          color: var(--on-accent);
         }
       }
       p {
-        color: $white;
+        color: var(--on-accent);
       }
       ul {
         li {
-          color: $white;
+          color: var(--on-accent);
         }
       }
       .ico {
-        background-color: $white;
+        background-color: var(--bg-card);
       }
     }
     figure {
@@ -134,7 +134,7 @@
         gap: rem(30px);
         padding-bottom: rem(20px);
         margin-bottom: rem(20px);
-        border-bottom: 1px solid #e9e9e9;
+        border-bottom: 1px solid var(--border-color);
         opacity: 0;
         animation: fade-up 1s forwards;
         .img-bx {
@@ -142,7 +142,7 @@
           border-radius: rem(5px);
           overflow: hidden;
           height: rem(160px);
-          background-color: $black;
+          background-color: #2a2a2a; // 이미지 딤 배경 — 테마 무관 고정
           @include flex-center;
           font-size: rem(60px);
           color: $gray;
@@ -247,7 +247,7 @@
               li {
                 margin-bottom: rem(5px);
                 padding-bottom: rem(5px);
-                border-bottom: 1px solid #e9e9e9;
+                border-bottom: 1px solid var(--border-color);
                 display: flex;
                 gap: rem(5px);
                 word-break: keep-all;
@@ -291,34 +291,12 @@
         margin-bottom: rem(30px);
         span {
           font-size: rem(13px);
+          color: $badge-text;
           padding: rem(2px) rem(10px);
           box-sizing: border-box;
           border-radius: rem(30px);
           background-color: $color-sub02;
-          &.html {
-            background-color: $bg-html;
-          }
-          &.css {
-            background-color: $bg-css;
-          }
-          &.js {
-            background-color: $bg-js;
-          }
-          &.vue {
-            background-color: $bg-vue;
-          }
-          &.react {
-            background-color: $bg-react;
-          }
-          &.next {
-            background-color: $bg-next;
-          }
-          &.php {
-            background-color: $bg-php;
-          }
-          &.gsap {
-            background-color: $bg-gsap;
-          }
+          @include skill-badge-colors;
         }
       }
     }

@@ -18,52 +18,23 @@
     box-sizing: border-box;
     border-radius: rem(10px);
 
-    &.item-html {
-      .ico {
-        background-color: $color-html;
-      }
-      .inc {
-        color: $color-html;
-      }
-    }
-    &.item-css {
-      .ico {
-        background-color: $color-css;
-      }
-      .inc {
-        color: $color-css;
-      }
-    }
-    &.item-js {
-      .ico {
-        background-color: $color-js;
-      }
-      .inc {
-        color: $color-js;
-      }
-    }
-    &.item-vue {
-      .ico {
-        background-color: $color-vue;
-      }
-      .inc {
-        color: $color-vue;
-      }
-    }
-    &.item-react {
-      .ico {
-        background-color: $color-react;
-      }
-      .inc {
-        color: $color-react;
-      }
-    }
-    &.item-ts {
-      .ico {
-        background-color: $color-ts;
-      }
-      .inc {
-        color: $color-ts;
+    // 언어별 색상 매핑 — 추가 언어는 여기 맵에만 등록
+    $lang-colors: (
+      'html': $color-html,
+      'css': $color-css,
+      'js': $color-js,
+      'vue': $color-vue,
+      'react': $color-react,
+      'ts': $color-ts,
+    );
+    @each $lang, $color in $lang-colors {
+      &.item-#{$lang} {
+        .ico {
+          background-color: $color;
+        }
+        .inc {
+          color: $color;
+        }
       }
     }
     a {
@@ -83,7 +54,7 @@
         border-radius: 50%;
         svg {
           font-size: rem(25px);
-          color: $white;
+          color: var(--on-accent);
         }
       }
       figcaption {

@@ -17,14 +17,21 @@
 
 html {
   font-size: 62.5%; // 1rem = 10px
+  color-scheme: light; // 스크롤바·폼 요소 네이티브 색상
+  &[data-theme='dark'] {
+    color-scheme: dark;
+  }
 }
 
 body {
   font-family: 'Pretendard', sans-serif;
   font-size: rem(17px);
   line-height: 1.7;
-  color: #232b2d;
+  color: $black;
   background-color: $bg-main;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease; // 테마 전환 시 부드럽게
   display: flex;
   justify-content: space-between;
   padding: rem(30px);
@@ -32,26 +39,7 @@ body {
   gap: rem(50px);
   width: 100%;
 }
-body > .btn-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  @include flex-center;
-  width: 45px;
-  height: 45px;
-  border: none;
-  background-color: $white;
-  font-size: 16px;
-  border-radius: 5px;
-  box-shadow: $bx-shadow01;
-  z-index: 9;
-  cursor: pointer;
-  transition: all 0.3s;
-  &:hover {
-    background-color: $color-sub;
-    color: $white;
-  }
-}
+
 a,
 button {
   color: $black;
@@ -102,7 +90,7 @@ aside {
         .chart-inner {
           @include flex-center;
           gap: rem(30px);
-          border-bottom: 1px solid #e9e9e9;
+          border-bottom: 1px solid var(--border-color);
           margin-bottom: rem(20px);
           padding-bottom: rem(20px);
           .chart {
@@ -203,11 +191,8 @@ aside {
     white-space: nowrap;
     box-sizing: border-box;
     cursor: pointer;
-    background-color: rgb(221, 225, 236);
-    border-width: medium;
-    border-style: none;
-    border-color: currentcolor;
-    border-image: initial;
+    background-color: $color-sub02;
+    border: none;
     border-radius: rem(5px);
     align-items: center;
     width: fit-content;
@@ -226,7 +211,7 @@ aside {
     }
     &:hover {
       background-color: $color-sub;
-      color: $white;
+      color: var(--on-accent);
     }
   }
 }
@@ -255,11 +240,11 @@ aside {
   input {
     background: none;
     font-size: rem(16px);
-    padding-left: rem(20px);
+    padding-left: 0;
     width: 90%;
     height: 100%;
     outline: none;
-    padding-left: 0;
+    color: $black; // 다크 모드에서 입력 텍스트 색 유지
   }
   .input-wrap {
     position: relative;
@@ -312,7 +297,7 @@ aside {
       height: rem(35px);
       border-radius: rem(5px);
       cursor: pointer;
-      background-color: #ebeaea;
+      background-color: var(--bg-hover);
       &:hover {
         svg {
           color: $color-sub03;
@@ -364,7 +349,7 @@ aside {
       }
       &:hover {
         background-color: $color-sub;
-        color: $white;
+        color: var(--on-accent);
       }
       &:disabled {
         opacity: 0.5;
@@ -440,19 +425,19 @@ aside {
 
       tbody {
         tr {
-          border-bottom: 1px solid #e9e9e9;
+          border-bottom: 1px solid var(--border-color);
           background-color: $white;
           transition: all 0.2s;
           cursor: pointer;
           &:hover {
-            background-color: #e9eaee;
+            background-color: var(--bg-hover);
             td {
               &.deps {
                 figure {
                   .ico {
                     background-color: $color-sub03;
                     svg {
-                      color: $white;
+                      color: var(--on-accent);
                     }
                   }
                 }
@@ -512,37 +497,12 @@ aside {
               opacity: 0;
               span {
                 font-size: rem(13px);
+                color: $badge-text;
                 padding: rem(5px) rem(15px);
                 box-sizing: border-box;
                 border-radius: rem(30px);
                 background-color: $color-sub02;
-                &.html {
-                  background-color: $bg-html;
-                }
-                &.css {
-                  background-color: $bg-css;
-                }
-                &.js {
-                  background-color: $bg-js;
-                }
-                &.ts {
-                  background-color: $bg-ts;
-                }
-                &.vue {
-                  background-color: $bg-vue;
-                }
-                &.react {
-                  background-color: $bg-react;
-                }
-                &.next {
-                  background-color: $bg-next;
-                }
-                &.php {
-                  background-color: $bg-php;
-                }
-                &.gsap {
-                  background-color: $bg-gsap;
-                }
+                @include skill-badge-colors;
               }
             }
             &.update {
@@ -567,6 +527,32 @@ aside {
   }
 }
 
+// 우측 유틸 버튼
+.btn-util {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  button {
+    @include flex-center;
+    width: 45px;
+    height: 45px;
+    border: none;
+    background-color: $white;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: $bx-shadow01;
+    z-index: 9;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    &:hover {
+      background-color: $color-sub;
+      color: var(--on-accent);
+    }
+  }
+}
+
+// 기본 FHD 사이즈
 @media screen and (max-width: 1920px) {
   main {
     width: 100%;
@@ -575,6 +561,7 @@ aside {
     display: none;
   }
 }
+//laptop 사이즈 L
 @media screen and (max-width: 1500px) {
   .home {
     .chart-wrap {
@@ -606,9 +593,9 @@ aside {
     }
   }
 }
-
+//laptop 사이즈 S
 @media screen and (max-width: 1200px) {
-  body > .btn-top {
+  .btn-util {
     display: none;
   }
   .table-wrap {
@@ -618,6 +605,8 @@ aside {
     }
   }
 }
+
+//태블릿 사이즈 S
 @media screen and (max-width: 768px) {
   html {
     font-size: 58.8%; // 1rem ≈ 9.4px → body 17px 지정 시 ≈ 16px
@@ -633,6 +622,8 @@ aside {
     }
   }
 }
+
+//모바일 사이즈
 @media screen and (max-width: 576px) {
   html {
     font-size: 55.1%; // 1rem ≈ 8.8px → body 17px 지정 시 ≈ 15px
