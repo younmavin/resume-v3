@@ -3710,6 +3710,7 @@ aside {
   overflow: hidden;
   animation: fade-up 1s forwards;
   opacity: 0;
+  font-size: 1.7rem;
 }
 .table-wrap .table-list table tbody tr td.deps figure figcaption small {
   color: var(--text-secondary);
