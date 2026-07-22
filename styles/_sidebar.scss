@@ -54,6 +54,24 @@
   ul {
     .menu-item {
       margin-bottom: rem(40px);
+      &.locked {
+        &.active {
+          a {
+            opacity: 1;
+          }
+
+          .total {
+            opacity: 1;
+          }
+        }
+        a {
+          opacity: 0.45;
+        }
+
+        .total {
+          opacity: 0.6;
+        }
+      }
       &:hover,
       &.active {
         strong {
@@ -91,6 +109,13 @@
           height: rem(30px);
           @include flex-center;
         }
+      }
+      .ico-lock {
+        width: rem(10px);
+        font-size: rem(12px);
+        color: $gray;
+        margin-left: rem(0px);
+        opacity: 0.7;
       }
       ul {
         box-sizing: border-box;
@@ -136,6 +161,13 @@
         }
       }
     }
+  }
+  .btn-admin {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: rem(16px);
+    color: $gray;
   }
 }
 .sidebar-overlay {

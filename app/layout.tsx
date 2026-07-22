@@ -6,6 +6,7 @@ import { portfolioData } from '@/data/portfolioData'
 import { qnaData } from '@/data/qnaData'
 import LayoutShell from '@/components/LayoutShell'
 import { getGuideList } from '@/lib/notion'
+import { getActiveUsersTotal } from '@/lib/ga4'
 
 // app/layout.tsx
 export const metadata: Metadata = {
@@ -60,6 +61,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const guideCount = guides.length
   const qnaCount = qnaData.length
 
+  // 방문자 분석 개수 (사이드바용)
+  const visitorTotal = await getActiveUsersTotal()
+
   return (
     <html lang="ko" suppressHydrationWarning>
       <body>
@@ -70,7 +74,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }}
         />
         <LenisProvider>
-          <LayoutShell portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts} guideCount={guideCount} qnaCount={qnaCount}>
+          <LayoutShell portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts} guideCount={guideCount} qnaCount={qnaCount} visitorTotal={visitorTotal}>
             {children}
           </LayoutShell>
         </LenisProvider>

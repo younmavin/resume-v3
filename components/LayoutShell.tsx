@@ -19,9 +19,10 @@ type LayoutShellProps = {
   gitCounts: Record<string, number>
   guideCount: number
   qnaCount: number
+  visitorTotal: number
 }
 
-const LayoutShell = ({ children, portfolioTotal, portfolioCounts, gitTotal, gitCounts, guideCount, qnaCount }: LayoutShellProps) => {
+const LayoutShell = ({ children, portfolioTotal, portfolioCounts, gitTotal, gitCounts, guideCount, qnaCount, visitorTotal }: LayoutShellProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { showTopBtn, scrollToTop } = useScrollTop()
   const { isDark, mounted, toggleTheme } = useTheme()
@@ -30,7 +31,7 @@ const LayoutShell = ({ children, portfolioTotal, portfolioCounts, gitTotal, gitC
   return (
     <>
       <Topbar onMenuClick={() => setSidebarOpen((prev) => !prev)} />
-      <Sidebar portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts} guideCount={guideCount} qnaCount={qnaCount} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar portfolioTotal={portfolioTotal} portfolioCounts={portfolioCounts} gitTotal={gitTotal} gitCounts={gitCounts} guideCount={guideCount} qnaCount={qnaCount} visitorTotal={visitorTotal} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <main>{children}</main>
       <Contactbar />
       <Bottombar onMailClick={() => setMailOpen(true)} />

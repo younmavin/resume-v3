@@ -12,6 +12,7 @@ type MenuItem = {
   icon: [IconPrefix, IconName]
   href: string
   total?: number
+  locked?: boolean
   sub: { label: string; count?: number | string; href: string }[]
 }
 
@@ -22,11 +23,12 @@ type SidebarProps = {
   gitCounts: Record<string, number>
   guideCount: number
   qnaCount: number
+  visitorTotal: number
   open?: boolean
   onClose?: () => void
 }
 
-const Sidebar = ({ portfolioTotal, portfolioCounts, gitTotal, gitCounts, guideCount, qnaCount, open = false, onClose }: SidebarProps) => {
+const Sidebar = ({ portfolioTotal, portfolioCounts, gitTotal, gitCounts, guideCount, qnaCount, visitorTotal, open = false, onClose }: SidebarProps) => {
   const ref = useParallax()
   const pathname = usePathname()
 
@@ -91,6 +93,14 @@ const Sidebar = ({ portfolioTotal, portfolioCounts, gitTotal, gitCounts, guideCo
         { label: '자주묻는 질문', count: qnaCount, href: '/board/qna' },
       ],
     },
+    {
+      title: '방문자 분석',
+      icon: ['fas', 'chart-simple'],
+      href: '/admin',
+      total: visitorTotal,
+      locked: true,
+      sub: [],
+    },
   ]
 
   const isMenuActive = (menu: MenuItem) => {
@@ -114,8 +124,8 @@ const Sidebar = ({ portfolioTotal, portfolioCounts, gitTotal, gitCounts, guideCo
             {menuItems.map((menu) => {
               const isActive = isMenuActive(menu)
               return (
-                <li key={menu.title} className={`menu-item ${isActive ? 'active' : ''}`}>
-                  <Link href={menu.href}>
+                <li key={menu.title} className={`menu-item ${isActive ? 'active' : ''} ${menu.locked ? 'locked' : ''}`}>
+                  <Link href={menu.href} title={menu.locked ? '관리자 로그인이 필요합니다' : undefined}>
                     <strong>
                       <span>
                         <FontAwesomeIcon icon={menu.icon} />
