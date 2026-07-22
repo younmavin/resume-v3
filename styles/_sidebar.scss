@@ -14,6 +14,7 @@
   position: sticky;
   align-self: flex-start;
   top: rem(30px);
+  overflow-y: auto;
   .btn-close {
     position: absolute;
     top: rem(15px);
@@ -184,6 +185,7 @@
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     border-radius: 0;
+
     &.is-open {
       transform: translateX(0);
     }

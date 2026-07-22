@@ -1547,6 +1547,7 @@ a {
   position: sticky;
   align-self: flex-start;
   top: 3rem;
+  overflow-y: auto;
 }
 .sidebar .btn-close {
   position: absolute;
