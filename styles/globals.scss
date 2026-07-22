@@ -500,7 +500,9 @@ aside {
                     font-size: rem(17px);
                     -webkit-text-size-adjust: 100%;
                     text-size-adjust: 100%;
-
+                    font-size: rem(17px) !important;
+                    -webkit-text-size-adjust: none !important;
+                    text-size-adjust: none !important;
                     small {
                       color: $gray;
                       font-size: 90%;
@@ -509,8 +511,9 @@ aside {
                       width: 100%;
                       overflow: hidden;
                       display: inline-block !important;
-                      -webkit-text-size-adjust: 100%;
-                      text-size-adjust: 100%;
+                      font-size: 90% !important;
+                      -webkit-text-size-adjust: none !important;
+                      text-size-adjust: none !important;
                     }
                   }
                 }

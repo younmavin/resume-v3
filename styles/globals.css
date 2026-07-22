@@ -4194,6 +4194,10 @@ aside {
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
        text-size-adjust: 100%;
+  font-size: 1.7rem !important;
+  -webkit-text-size-adjust: none !important;
+  -moz-text-size-adjust: none !important;
+       text-size-adjust: none !important;
 }
 .table-wrap .table-list table tbody tr td.deps figure figcaption p small {
   color: var(--text-secondary);
@@ -4203,9 +4207,10 @@ aside {
   width: 100%;
   overflow: hidden;
   display: inline-block !important;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-       text-size-adjust: 100%;
+  font-size: 90% !important;
+  -webkit-text-size-adjust: none !important;
+  -moz-text-size-adjust: none !important;
+       text-size-adjust: none !important;
 }
 .table-wrap .table-list table tbody tr td.skill {
   animation: fade-up 1s forwards;
