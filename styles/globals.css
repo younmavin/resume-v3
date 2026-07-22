@@ -4112,6 +4112,10 @@ aside {
 .table-wrap .table-list {
   position: relative;
   overflow-x: auto;
+  max-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+       text-size-adjust: 100%;
 }
 .table-wrap .table-list.is-locked {
   overflow: hidden;
