@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import '@/lib/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,11 +12,28 @@ const POPULAR_KEYWORDS = ['웹표준 및 접근성', '크로스브라우징', 'S
 const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; perPage?: number }) => {
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
+  const [showScrollHint, setShowScrollHint] = useState(false)
+  const tableListRef = useRef<HTMLDivElement>(null)
+  const theadRef = useRef<HTMLTableSectionElement>(null)
+  const [theadHeight, setTheadHeight] = useState(0)
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      const el = tableListRef.current
+      if (!el) return
+      setShowScrollHint(el.scrollWidth > el.clientWidth)
+      if (theadRef.current) {
+        setTheadHeight(theadRef.current.offsetHeight)
+      }
+    }
+
+    checkOverflow()
+    window.addEventListener('resize', checkOverflow)
+    return () => window.removeEventListener('resize', checkOverflow)
+  }, [guides])
 
   const filtered = guides.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()) || item.sub.toLowerCase().includes(search.toLowerCase()))
-
   const totalPage = Math.ceil(filtered.length / perPage)
-
   const current = filtered.slice((page - 1) * perPage, page * perPage)
 
   const handleSearch = (word: string) => {
@@ -49,9 +66,18 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
       <SearchBar popularKeywords={POPULAR_KEYWORDS} onSearch={handleSearch} onReset={handleReset} />
 
       <div className="table-wrap">
-        <div className="table-list">
+        <div className="table-list" ref={tableListRef}>
+          {showScrollHint && (
+            <div className="scroll-hint" onClick={() => setShowScrollHint(false)}>
+              <span className="pill">
+                <FontAwesomeIcon icon={['fas', 'arrow-right']} className="ico" />
+                내용을 우측으로 밀어서 확인하세요
+              </span>
+            </div>
+          )}
+
           <table>
-            <thead>
+            <thead ref={theadRef}>
               <tr>
                 <th>제목</th>
                 <th>업로드 일</th>
@@ -86,9 +112,10 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
                         </div>
 
                         <figcaption>
-                          {item.title}
-
-                          <small>{item.sub}</small>
+                          <p>
+                            {item.title}
+                            <small>{item.sub}</small>
+                          </p>
                         </figcaption>
                       </figure>
                     </td>

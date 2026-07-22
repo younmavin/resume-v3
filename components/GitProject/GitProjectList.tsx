@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -14,8 +14,32 @@ const langClass: Record<string, string> = {
 
 const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: number }) => {
   const [page, setPage] = useState(1)
+  const [showScrollHint, setShowScrollHint] = useState(false)
+  const [theadHeight, setTheadHeight] = useState(0)
+  const tableListRef = useRef<HTMLDivElement>(null)
+  const theadRef = useRef<HTMLTableSectionElement>(null)
+
   const totalPage = Math.ceil(repos.length / perPage)
   const current = repos.slice((page - 1) * perPage, page * perPage)
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      const el = tableListRef.current
+      if (!el) return
+      setShowScrollHint(el.scrollWidth > el.clientWidth)
+      if (theadRef.current) {
+        setTheadHeight(theadRef.current.offsetHeight)
+      }
+    }
+
+    const rafId = requestAnimationFrame(checkOverflow)
+
+    window.addEventListener('resize', checkOverflow)
+    return () => {
+      cancelAnimationFrame(rafId)
+      window.removeEventListener('resize', checkOverflow)
+    }
+  }, [repos])
 
   const openRepo = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')
@@ -24,9 +48,18 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
   return (
     <div className="project-list-cont cont">
       <div className="table-wrap">
-        <div className="table-list">
+        <div className="table-list" ref={tableListRef}>
+          {showScrollHint && (
+            <div className="scroll-hint" style={{ top: theadHeight }} onClick={() => setShowScrollHint(false)}>
+              <span className="pill">
+                <FontAwesomeIcon icon={['fas', 'arrow-right']} className="ico" />
+                내용을 우측으로 밀어서 확인하세요
+              </span>
+            </div>
+          )}
+
           <table>
-            <thead>
+            <thead ref={theadRef}>
               <tr>
                 <th>레포지토리</th>
                 <th>마지막 업데이트</th>
@@ -59,8 +92,10 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
                       </div>
 
                       <figcaption>
-                        {repo.name}
-                        <small>{repo.description ?? '설명 없음'}</small>
+                        <p>
+                          {repo.name}
+                          <small>{repo.description ?? '설명 없음'}</small>
+                        </p>
                       </figcaption>
                     </figure>
                   </td>

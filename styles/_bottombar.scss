@@ -9,6 +9,7 @@
   left: 0;
   background-color: $color-sub;
   display: none;
+  z-index: 9;
   .inner {
     width: 100%;
     height: 100%;
