@@ -4112,7 +4112,7 @@ aside {
 .table-wrap .table-list {
   position: relative;
   overflow-x: auto;
-  max-height: 100vh;
+  overflow-y: hidden;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
        text-size-adjust: 100%;
@@ -4183,6 +4183,7 @@ aside {
 .table-wrap .table-list table tbody tr td.deps figure figcaption {
   width: 100%;
   max-width: 50rem;
+  max-height: 6rem;
   min-width: 0;
   overflow: hidden;
   animation: fade-up 1s forwards;
