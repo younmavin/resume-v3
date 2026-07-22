@@ -45,6 +45,10 @@ export default function AdminLoginGate() {
     <div className="admin-login-gate" onClick={handleClose}>
       <div className="modal-mount">
         <div className={`modal ${shake ? 'shake' : ''}`} onClick={(e) => e.stopPropagation()}>
+          <button type="button" className="btn-close" onClick={handleClose} aria-label="닫기">
+            <FontAwesomeIcon icon={['fas', 'xmark']} />
+          </button>
+
           <div className="modal-ico">
             <FontAwesomeIcon icon={['fas', 'lock']} />
           </div>

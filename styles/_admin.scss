@@ -184,6 +184,7 @@
   }
 
   .modal {
+    position: relative; // 추가
     background-color: $white;
     box-shadow: $bx-shadow01;
     border-radius: rem(14px);
@@ -195,6 +196,29 @@
 
     &.shake {
       animation: admin-shake 0.4s ease;
+    }
+
+    .btn-close {
+      position: absolute;
+      top: rem(16px);
+      right: rem(16px);
+      width: rem(30px);
+      height: rem(30px);
+      border: none;
+      background: none;
+      color: $gray;
+      font-size: rem(14px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: $color-sub02;
+        color: $black;
+      }
     }
   }
 
