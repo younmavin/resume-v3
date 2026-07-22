@@ -18,12 +18,14 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
   const [theadHeight, setTheadHeight] = useState(0)
   const tableListRef = useRef<HTMLDivElement>(null)
   const theadRef = useRef<HTMLTableSectionElement>(null)
+  const hintDismissedRef = useRef(false) // 한 번 닫으면 다시 안 뜨게
 
   const totalPage = Math.ceil(repos.length / perPage)
   const current = repos.slice((page - 1) * perPage, page * perPage)
 
   useEffect(() => {
     const checkOverflow = () => {
+      if (hintDismissedRef.current) return
       const el = tableListRef.current
       if (!el) return
       setShowScrollHint(el.scrollWidth > el.clientWidth)
@@ -41,6 +43,11 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
     }
   }, [repos])
 
+  const handleDismissHint = () => {
+    hintDismissedRef.current = true
+    setShowScrollHint(false)
+  }
+
   const openRepo = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
@@ -48,9 +55,9 @@ const GitProjectList = ({ repos = [], perPage = 10 }: { repos: any[]; perPage?: 
   return (
     <div className="project-list-cont cont">
       <div className="table-wrap">
-        <div className="table-list" ref={tableListRef}>
+        <div className={`table-list ${showScrollHint ? 'is-locked' : ''}`} ref={tableListRef}>
           {showScrollHint && (
-            <div className="scroll-hint" style={{ top: theadHeight }} onClick={() => setShowScrollHint(false)}>
+            <div className="scroll-hint" style={{ top: theadHeight }} onClick={handleDismissHint}>
               <span className="pill">
                 <FontAwesomeIcon icon={['fas', 'arrow-right']} className="ico" />
                 내용을 우측으로 밀어서 확인하세요

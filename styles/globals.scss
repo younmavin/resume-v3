@@ -412,6 +412,11 @@ aside {
   overflow: hidden;
   .table-list {
     position: relative;
+    overflow-x: auto; // 기존에 이미 있을 값
+
+    &.is-locked {
+      overflow: hidden; // 힌트 떠있는 동안 스크롤 잠금
+    }
     table {
       width: 100%;
 
@@ -487,8 +492,12 @@ aside {
                   overflow: hidden;
                   animation: fade-up 1s forwards;
                   opacity: 0;
+
                   p {
                     font-size: rem(17px);
+                    -webkit-text-size-adjust: 100%;
+                    text-size-adjust: 100%;
+
                     small {
                       color: $gray;
                       font-size: 90%;
@@ -497,6 +506,8 @@ aside {
                       width: 100%;
                       overflow: hidden;
                       display: inline-block !important;
+                      -webkit-text-size-adjust: 100%;
+                      text-size-adjust: 100%;
                     }
                   }
                 }

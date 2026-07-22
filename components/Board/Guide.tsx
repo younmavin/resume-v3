@@ -16,9 +16,11 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
   const tableListRef = useRef<HTMLDivElement>(null)
   const theadRef = useRef<HTMLTableSectionElement>(null)
   const [theadHeight, setTheadHeight] = useState(0)
+  const hintDismissedRef = useRef(false) // 한 번 닫으면 다시 안 뜨게
 
   useEffect(() => {
     const checkOverflow = () => {
+      if (hintDismissedRef.current) return
       const el = tableListRef.current
       if (!el) return
       setShowScrollHint(el.scrollWidth > el.clientWidth)
@@ -27,10 +29,19 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
       }
     }
 
-    checkOverflow()
+    const rafId = requestAnimationFrame(checkOverflow)
+
     window.addEventListener('resize', checkOverflow)
-    return () => window.removeEventListener('resize', checkOverflow)
+    return () => {
+      cancelAnimationFrame(rafId)
+      window.removeEventListener('resize', checkOverflow)
+    }
   }, [guides])
+
+  const handleDismissHint = () => {
+    hintDismissedRef.current = true
+    setShowScrollHint(false)
+  }
 
   const filtered = guides.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()) || item.sub.toLowerCase().includes(search.toLowerCase()))
   const totalPage = Math.ceil(filtered.length / perPage)
@@ -66,9 +77,9 @@ const BoardGuideList = ({ guides = [], perPage = 10 }: { guides: GuideItem[]; pe
       <SearchBar popularKeywords={POPULAR_KEYWORDS} onSearch={handleSearch} onReset={handleReset} />
 
       <div className="table-wrap">
-        <div className="table-list" ref={tableListRef}>
+        <div className={`table-list ${showScrollHint ? 'is-locked' : ''}`} ref={tableListRef}>
           {showScrollHint && (
-            <div className="scroll-hint" onClick={() => setShowScrollHint(false)}>
+            <div className="scroll-hint" style={{ top: theadHeight }} onClick={handleDismissHint}>
               <span className="pill">
                 <FontAwesomeIcon icon={['fas', 'arrow-right']} className="ico" />
                 내용을 우측으로 밀어서 확인하세요
